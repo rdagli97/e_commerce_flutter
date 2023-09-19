@@ -1,3 +1,7 @@
+import 'package:flutter_e_commerce_app/data/models/buyed_products.dart';
+import 'package:flutter_e_commerce_app/data/models/product_model.dart';
+import 'package:flutter_e_commerce_app/data/models/saled_products.dart';
+
 class UserModel {
   int? id;
   String? username;
@@ -7,10 +11,9 @@ class UserModel {
   int? role;
   String? adress;
   String? aboutUs;
-  // List<Products>? products;
-  // List<BuyedProducts>? buyedProducts;
-  // List<Favourites>? favourites;
-  // List<SaledProducts>? saledProducts;
+  List<ProductsModel>? products;
+  List<BuyedProductsModel>? buyedProducts;
+  List<SaledProductsModel>? saledProducts;
 
   UserModel({
     this.id,
@@ -21,6 +24,9 @@ class UserModel {
     this.role,
     this.adress,
     this.aboutUs,
+    this.products,
+    this.buyedProducts,
+    this.saledProducts,
   });
 
   UserModel.fromJson(Map<String, dynamic> json) {
@@ -32,6 +38,24 @@ class UserModel {
     role = json['role'];
     adress = json['adress'];
     aboutUs = json['about_us'];
+    if (json['products'] != null) {
+      products = <ProductsModel>[];
+      json['products'].forEach((v) {
+        products!.add(ProductsModel.fromJson(v));
+      });
+    }
+    if (json['buyedProducts'] != null) {
+      buyedProducts = <BuyedProductsModel>[];
+      json['buyedProducts'].forEach((v) {
+        buyedProducts!.add(BuyedProductsModel.fromJson(v));
+      });
+    }
+    if (json['saledProducts'] != null) {
+      saledProducts = <SaledProductsModel>[];
+      json['saledProducts'].forEach((v) {
+        saledProducts!.add(SaledProductsModel.fromJson(v));
+      });
+    }
   }
 }
 
