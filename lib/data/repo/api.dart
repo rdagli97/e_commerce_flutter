@@ -621,7 +621,7 @@ class API {
       final dynamic body = convert.jsonDecode(response.body);
       switch (response.statusCode) {
         case 200:
-          apiResponse.data = CommentImage.fromJson(body['commentImage']);
+          apiResponse.data = CommentImageModel.fromJson(body['commentImage']);
           break;
         case 404:
           apiResponse.error = body['message'];

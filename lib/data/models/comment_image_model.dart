@@ -1,17 +1,17 @@
-class CommentImage {
+class CommentImageModel {
   String? image;
   String? commentId;
   int? userId;
   int? id;
 
-  CommentImage({
+  CommentImageModel({
     this.image,
     this.commentId,
     this.userId,
     this.id,
   });
 
-  CommentImage.fromJson(Map<String, dynamic> json) {
+  CommentImageModel.fromJson(Map<String, dynamic> json) {
     image = json['image'];
     commentId = json['comment_id'];
     userId = json['user_id'];

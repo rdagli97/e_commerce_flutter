@@ -1,3 +1,5 @@
+import 'package:flutter_e_commerce_app/data/models/comment_image_model.dart';
+
 class CommentsModel {
   int? id;
   int? userId;
@@ -6,7 +8,7 @@ class CommentsModel {
   int? rating;
   String? createdAt;
   String? updatedAt;
-  //List<CommentImages>? commentImages;
+  List<CommentImageModel>? commentImages;
 
   CommentsModel({
     this.id,
@@ -22,5 +24,11 @@ class CommentsModel {
     comment = json['comment'];
     productId = json['product_id'];
     rating = json['rating'];
+    if (json['commentImages'] != null) {
+      commentImages = <CommentImageModel>[];
+      json['commentImages'].forEach((v) {
+        commentImages!.add(CommentImageModel.fromJson(v));
+      });
+    }
   }
 }
