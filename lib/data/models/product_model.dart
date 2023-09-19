@@ -1,3 +1,6 @@
+import 'package:flutter_e_commerce_app/data/models/comment_model.dart';
+import 'package:flutter_e_commerce_app/data/models/product_image_model.dart';
+
 class ProductsModel {
   int? id;
   int? userId;
@@ -9,8 +12,8 @@ class ProductsModel {
   int? discount;
   int? online;
   String? image;
-  //List<ProductImages>? productImages;
-  //List<Comments>? comments;
+  List<ProductImageModel>? productImages;
+  List<CommentsModel>? comments;
 
   ProductsModel({
     this.id,
@@ -23,6 +26,8 @@ class ProductsModel {
     this.discount,
     this.online,
     this.image,
+    this.comments,
+    this.productImages,
   });
 
   ProductsModel.fromJson(Map<String, dynamic> json) {
@@ -36,5 +41,11 @@ class ProductsModel {
     discount = json['discount'];
     online = json['online'];
     image = json['image'];
+    if (json['productImages'] != null) {
+      productImages = <ProductImageModel>[];
+      json['productImages'].forEach((v) {
+        productImages!.add(ProductImageModel.fromJson(v));
+      });
+    }
   }
 }

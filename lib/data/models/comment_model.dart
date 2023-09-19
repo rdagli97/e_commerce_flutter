@@ -16,6 +16,7 @@ class CommentsModel {
     this.comment,
     this.productId,
     this.rating,
+    this.commentImages,
   });
 
   CommentsModel.fromJson(Map<String, dynamic> json) {
