@@ -1,4 +1,5 @@
 import 'package:flutter_e_commerce_app/data/models/buyed_products.dart';
+import 'package:flutter_e_commerce_app/data/models/favourite_model.dart';
 import 'package:flutter_e_commerce_app/data/models/product_model.dart';
 import 'package:flutter_e_commerce_app/data/models/saled_products.dart';
 
@@ -14,6 +15,7 @@ class UserModel {
   List<ProductsModel>? products;
   List<BuyedProductsModel>? buyedProducts;
   List<SaledProductsModel>? saledProducts;
+  List<FavouriteModel>? favouriteProducts;
 
   UserModel({
     this.id,
@@ -27,6 +29,7 @@ class UserModel {
     this.products,
     this.buyedProducts,
     this.saledProducts,
+    this.favouriteProducts,
   });
 
   UserModel.fromJson(Map<String, dynamic> json) {
@@ -54,6 +57,12 @@ class UserModel {
       saledProducts = <SaledProductsModel>[];
       json['saledProducts'].forEach((v) {
         saledProducts!.add(SaledProductsModel.fromJson(v));
+      });
+    }
+    if (json['favouriteProducts'] != null) {
+      favouriteProducts = <FavouriteModel>[];
+      json['favouriteProducts'].forEach((v) {
+        favouriteProducts!.add(FavouriteModel.fromJson(v));
       });
     }
   }
