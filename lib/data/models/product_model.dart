@@ -47,5 +47,11 @@ class ProductsModel {
         productImages!.add(ProductImageModel.fromJson(v));
       });
     }
+    if (json['comments'] != null) {
+      comments = <CommentsModel>[];
+      json['comments'].forEach((v) {
+        comments!.add(CommentsModel.fromJson(v));
+      });
+    }
   }
 }

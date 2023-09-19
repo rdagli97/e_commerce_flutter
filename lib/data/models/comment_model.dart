@@ -25,9 +25,9 @@ class CommentsModel {
     comment = json['comment'];
     productId = json['product_id'];
     rating = json['rating'];
-    if (json['commentImages'] != null) {
+    if (json['comment_images'] != null) {
       commentImages = <CommentImageModel>[];
-      json['commentImages'].forEach((v) {
+      json['comment_images'].forEach((v) {
         commentImages!.add(CommentImageModel.fromJson(v));
       });
     }

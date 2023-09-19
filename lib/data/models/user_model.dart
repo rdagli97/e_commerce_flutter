@@ -59,9 +59,9 @@ class UserModel {
         saledProducts!.add(SaledProductsModel.fromJson(v));
       });
     }
-    if (json['favouriteProducts'] != null) {
+    if (json['favourites'] != null) {
       favouriteProducts = <FavouriteModel>[];
-      json['favouriteProducts'].forEach((v) {
+      json['favourites'].forEach((v) {
         favouriteProducts!.add(FavouriteModel.fromJson(v));
       });
     }
