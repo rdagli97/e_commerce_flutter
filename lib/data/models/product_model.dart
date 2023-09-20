@@ -41,9 +41,9 @@ class ProductsModel {
     discount = json['discount'];
     online = json['online'];
     image = json['image'];
-    if (json['productImages'] != null) {
+    if (json['product_images'] != null) {
       productImages = <ProductImageModel>[];
-      json['productImages'].forEach((v) {
+      json['product_images'].forEach((v) {
         productImages!.add(ProductImageModel.fromJson(v));
       });
     }

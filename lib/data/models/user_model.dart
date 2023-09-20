@@ -47,15 +47,15 @@ class UserModel {
         products!.add(ProductsModel.fromJson(v));
       });
     }
-    if (json['buyedProducts'] != null) {
+    if (json['buyed_products'] != null) {
       buyedProducts = <BuyedProductsModel>[];
-      json['buyedProducts'].forEach((v) {
+      json['buyed_products'].forEach((v) {
         buyedProducts!.add(BuyedProductsModel.fromJson(v));
       });
     }
-    if (json['saledProducts'] != null) {
+    if (json['saled_products'] != null) {
       saledProducts = <SaledProductsModel>[];
-      json['saledProducts'].forEach((v) {
+      json['saled_products'].forEach((v) {
         saledProducts!.add(SaledProductsModel.fromJson(v));
       });
     }
