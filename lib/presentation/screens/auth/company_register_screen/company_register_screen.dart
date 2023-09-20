@@ -1,6 +1,5 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/domain/controllers/screen_controller/company_register_controller.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_button.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_container.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
@@ -15,10 +14,7 @@ class CompanyRegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CompanyRegisterController companyRegisterController =
-        CompanyRegisterController();
-    final Duration startDuration =
-        Duration(milliseconds: companyRegisterController.startDuration);
+    const Duration startDuration = Duration(milliseconds: 400);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -30,7 +26,7 @@ class CompanyRegisterScreen extends StatelessWidget {
                 height: 80,
                 child: IconButton(
                   alignment: Alignment.centerLeft,
-                  onPressed: companyRegisterController.backTAP,
+                  onPressed: () {},
                   icon: const Icon(
                     Icons.chevron_left_rounded,
                     color: AppColors.white,
@@ -60,7 +56,7 @@ class CompanyRegisterScreen extends StatelessWidget {
                     AddSpace().vertical(5),
                     // Log in text button
                     GestureDetector(
-                      onTap: companyRegisterController.logInTap,
+                      onTap: () {},
                       child: const CustomText(
                         text: AppStrings.loginCom,
                         color: AppColors.primaryColor,
@@ -69,47 +65,47 @@ class CompanyRegisterScreen extends StatelessWidget {
                     AddSpace().vertical(20),
                     // username textfield
                     CustomTextFormField(
-                      controller: companyRegisterController.usernameController,
+                      controller: TextEditingController(),
                       hintText: 'Company name',
                     ),
                     AddSpace().vertical(10),
                     // email textfield
                     CustomTextFormField(
-                      controller: companyRegisterController.emailController,
+                      controller: TextEditingController(),
                       hintText: AppStrings.email,
                       keyboardType: TextInputType.emailAddress,
                     ),
                     AddSpace().vertical(10),
                     // location textfield
                     CustomTextFormField(
-                      controller: companyRegisterController.usernameController,
+                      controller: TextEditingController(),
                       hintText: 'Location e.g:City/town/neighbourhood/no',
                     ),
                     AddSpace().vertical(10),
                     // phone textfield
                     CustomTextFormField(
-                      controller: companyRegisterController.usernameController,
+                      controller: TextEditingController(),
                       hintText: 'Phone number',
                       keyboardType: TextInputType.phone,
                     ),
                     AddSpace().vertical(10),
                     // password textfield
                     CustomTextFormField(
-                      controller: companyRegisterController.passwordController,
+                      controller: TextEditingController(),
                       hintText: AppStrings.password,
                       obscureText: true,
                     ),
                     AddSpace().vertical(10),
                     // password confirm textfield
                     CustomTextFormField(
-                      controller: companyRegisterController.passwordCController,
+                      controller: TextEditingController(),
                       hintText: AppStrings.passwordC,
                       obscureText: true,
                     ),
                     AddSpace().vertical(10),
                     // sign up button
                     CustomButton(
-                      onTap: companyRegisterController.signUpTap,
+                      onTap: () {},
                       color: AppColors.primaryColor,
                       child: const CustomText(
                         text: AppStrings.signup,

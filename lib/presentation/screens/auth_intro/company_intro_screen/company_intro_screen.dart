@@ -1,6 +1,5 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/domain/controllers/screen_controller/company_intro_controller.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_button.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
 import 'package:flutter_e_commerce_app/resources/consts/assets_strings.dart';
@@ -8,15 +7,13 @@ import 'package:flutter_e_commerce_app/resources/consts/strings.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/style/font_sizes.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
-import 'package:get/get.dart';
 
 class CompanyIntroScreen extends StatelessWidget {
   const CompanyIntroScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final CompanyIntroController companyIntroController =
-        Get.put(CompanyIntroController());
+    int startDuration = 200;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 13),
@@ -25,8 +22,7 @@ class CompanyIntroScreen extends StatelessWidget {
             children: [
               // image
               BounceInDown(
-                duration: Duration(
-                    milliseconds: companyIntroController.startDuration),
+                duration: Duration(milliseconds: startDuration),
                 child: const Image(
                   image: AssetImage(AppAssets.companyIntroAsset),
                 ),
@@ -34,8 +30,7 @@ class CompanyIntroScreen extends StatelessWidget {
               AddSpace().vertical(10),
               // intro Title
               BounceInLeft(
-                duration: Duration(
-                    milliseconds: companyIntroController.startDuration * 2),
+                duration: Duration(milliseconds: startDuration * 2),
                 child: const Align(
                   alignment: Alignment.centerLeft,
                   child: CustomText(
@@ -48,8 +43,7 @@ class CompanyIntroScreen extends StatelessWidget {
               AddSpace().vertical(10),
               // subtitle
               BounceInLeft(
-                duration: Duration(
-                    milliseconds: companyIntroController.startDuration * 3),
+                duration: Duration(milliseconds: startDuration * 3),
                 child: const CustomText(
                   text: AppStrings.introSubtitle,
                   fontSize: AppFontSizes.description14,
@@ -58,8 +52,7 @@ class CompanyIntroScreen extends StatelessWidget {
               AddSpace().vertical(15),
               // as a company text
               FadeInLeft(
-                duration: Duration(
-                    milliseconds: companyIntroController.startDuration * 4),
+                duration: Duration(milliseconds: startDuration * 4),
                 child: const CustomText(text: AppStrings.asACompany),
               ),
               AddSpace().vertical(15),
@@ -68,12 +61,11 @@ class CompanyIntroScreen extends StatelessWidget {
                 children: [
                   // Login button
                   BounceInLeft(
-                    duration: Duration(
-                        milliseconds: companyIntroController.startDuration * 4),
+                    duration: Duration(milliseconds: startDuration * 4),
                     child: CustomButton(
                       width: 175,
                       color: AppColors.primaryColor,
-                      onTap: companyIntroController.loginTAP,
+                      onTap: () {},
                       child: const CustomText(
                         text: AppStrings.login,
                         color: AppColors.bgColor,
@@ -83,11 +75,10 @@ class CompanyIntroScreen extends StatelessWidget {
                   ),
                   // Signup button
                   BounceInRight(
-                    duration: Duration(
-                        milliseconds: companyIntroController.startDuration * 4),
+                    duration: Duration(milliseconds: startDuration * 4),
                     child: CustomButton(
                       width: 175,
-                      onTap: companyIntroController.signupTAP,
+                      onTap: () {},
                       child: const CustomText(
                         text: AppStrings.signup,
                         color: AppColors.primaryColor,
@@ -99,7 +90,7 @@ class CompanyIntroScreen extends StatelessWidget {
               AddSpace().vertical(5),
               // back button
               CustomButton(
-                onTap: companyIntroController.backTAP,
+                onTap: () {},
                 child: const Icon(Icons.chevron_left_rounded),
               ),
             ],

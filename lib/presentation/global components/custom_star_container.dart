@@ -3,7 +3,6 @@ import 'package:flutter_e_commerce_app/presentation/global%20components/custom_t
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/style/font_sizes.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
-import 'package:get/get.dart';
 
 class CustomStarContainer extends StatelessWidget {
   const CustomStarContainer({
@@ -23,8 +22,8 @@ class CustomStarContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height ?? Get.height * 0.03,
-      width: width ?? Get.width * 0.11,
+      height: height ?? MediaQuery.of(context).size.height * 0.03,
+      width: width ?? MediaQuery.of(context).size.width * 0.11,
       padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 5),
       decoration: BoxDecoration(
         color: bgColor ?? AppColors.bgColor,

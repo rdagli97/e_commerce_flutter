@@ -3,7 +3,6 @@ import 'package:flutter_e_commerce_app/presentation/global%20components/calculat
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
-import 'package:get/get.dart';
 
 class PieceCalculatorContainer extends StatelessWidget {
   const PieceCalculatorContainer({
@@ -34,10 +33,10 @@ class PieceCalculatorContainer extends StatelessWidget {
             borderColor: AppColors.white,
             bgColor: AppColors.white,
           ),
-          AddSpace().horizontal(Get.width * 0.01),
+          AddSpace().horizontal(MediaQuery.of(context).size.width * 0.01),
           // value
           CustomText(text: pieceText),
-          AddSpace().horizontal(Get.width * 0.01),
+          AddSpace().horizontal(MediaQuery.of(context).size.width * 0.01),
           // increment button
           CalculateButton(
             onTap: incrementTAP,

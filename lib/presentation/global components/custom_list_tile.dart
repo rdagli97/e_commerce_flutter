@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/domain/router/route.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_icon_button.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_star_container.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
@@ -7,7 +6,6 @@ import 'package:flutter_e_commerce_app/resources/consts/assets_strings.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/style/font_sizes.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
-import 'package:get/get.dart';
 
 class CustomListTile extends StatelessWidget {
   const CustomListTile({super.key});
@@ -17,7 +15,6 @@ class CustomListTile extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // route detail page
-        Get.toNamed(AppRouter.productDetail);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),

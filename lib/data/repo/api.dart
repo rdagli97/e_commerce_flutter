@@ -178,12 +178,6 @@ class API {
     return apiResponse;
   }
 
-  // usermodel need to be fixed
-  /// Products with images and comments
-  /// buyedProducts
-  /// favourites
-  /// saledProducts
-
   Future<ApiResponse> getCurrentUserDetails() async {
     ApiResponse apiResponse = ApiResponse();
     String? token = await SharedPreference().getToken();
@@ -269,7 +263,9 @@ class API {
   }
 
   // delete product
-  Future<ApiResponse> deleteProduct(int productId) async {
+  Future<ApiResponse> deleteProduct({
+    required int productId,
+  }) async {
     ApiResponse apiResponse = ApiResponse();
     String? token = await SharedPreference().getToken();
     if (token == '' || token.isEmpty) {
@@ -309,7 +305,10 @@ class API {
     return apiResponse;
   }
 
-  Future<ApiResponse> giveDiscount(int productId, int discountValue) async {
+  Future<ApiResponse> giveDiscount({
+    required int productId,
+    required int discountValue,
+  }) async {
     ApiResponse apiResponse = ApiResponse();
     String? token = await SharedPreference().getToken();
     if (token == '' || token.isEmpty) {
@@ -557,7 +556,7 @@ class API {
 
   Future<ApiResponse> createProductImage({
     required String image,
-    required String productId,
+    required int productId,
   }) async {
     ApiResponse apiResponse = ApiResponse();
     String? token = await SharedPreference().getToken();

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/domain/controllers/screen_controller/visit_customer_controller.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_button.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
-import 'package:get/get.dart';
 
 import '../../../resources/consts/assets_strings.dart';
 
@@ -18,10 +16,6 @@ class VisitCustomerScreen extends StatefulWidget {
 class _VisitCustomerScreenState extends State<VisitCustomerScreen> {
   @override
   Widget build(BuildContext context) {
-    final VisitCustomerController visitCustomerController =
-        Get.put<VisitCustomerController>(
-      VisitCustomerController(),
-    );
     return Scaffold(
       appBar: AppBar(
         title: const CustomText(text: 'Username'),
@@ -59,7 +53,7 @@ class _VisitCustomerScreenState extends State<VisitCustomerScreen> {
             AddSpace().vertical(20),
             // my orders button
             CustomButton(
-              onTap: visitCustomerController.ordersTAP,
+              onTap: () {},
               child: const CustomText(
                 text: 'Orders',
                 fontWeight: FontWeight.bold,
@@ -68,7 +62,7 @@ class _VisitCustomerScreenState extends State<VisitCustomerScreen> {
             AddSpace().vertical(20),
             // my comments button
             CustomButton(
-              onTap: visitCustomerController.commentsTAP,
+              onTap: () {},
               child: const CustomText(
                 text: 'Comments',
                 fontWeight: FontWeight.bold,

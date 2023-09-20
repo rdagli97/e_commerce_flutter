@@ -1,6 +1,5 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/domain/controllers/screen_controller/company_login_controller.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_button.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_container.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
@@ -15,10 +14,9 @@ class CompanyLoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CompanyLoginController companyLoginController =
-        CompanyLoginController();
-    final Duration startDuration =
-        Duration(milliseconds: companyLoginController.startDuration);
+    const Duration startDuration =
+        // değer ayarla
+        Duration(milliseconds: 1);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -50,7 +48,7 @@ class CompanyLoginScreen extends StatelessWidget {
                     AddSpace().vertical(5),
                     // Sign up text button
                     GestureDetector(
-                      onTap: companyLoginController.signUpTap,
+                      onTap: () {},
                       child: const CustomText(
                         text: AppStrings.signup,
                         color: AppColors.primaryColor,
@@ -59,21 +57,21 @@ class CompanyLoginScreen extends StatelessWidget {
                     AddSpace().vertical(20),
                     // email textfield
                     CustomTextFormField(
-                      controller: companyLoginController.emailController,
+                      controller: TextEditingController(),
                       hintText: AppStrings.email,
                       keyboardType: TextInputType.emailAddress,
                     ),
                     AddSpace().vertical(10),
                     // password textfield
                     CustomTextFormField(
-                      controller: companyLoginController.passwordController,
+                      controller: TextEditingController(),
                       hintText: AppStrings.password,
                       obscureText: true,
                     ),
                     AddSpace().vertical(20),
                     // log in button
                     CustomButton(
-                      onTap: companyLoginController.logInTap,
+                      onTap: () {},
                       color: AppColors.primaryColor,
                       child: const CustomText(
                         text: AppStrings.login,
@@ -84,7 +82,7 @@ class CompanyLoginScreen extends StatelessWidget {
                     AddSpace().vertical(20),
                     // back button
                     CustomButton(
-                      onTap: companyLoginController.backTAP,
+                      onTap: () {},
                       child: const Icon(Icons.chevron_left_rounded),
                     ),
                   ],

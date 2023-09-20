@@ -6,7 +6,6 @@ import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/style/font_sizes.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/card_screen/calculator_container.dart';
-import 'package:get/get.dart';
 
 class CardScreen extends StatelessWidget {
   const CardScreen({super.key});
@@ -38,7 +37,7 @@ class CardScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: Get.height * 0.45,
+              height: MediaQuery.of(context).size.height * 0.45,
               child: ListView(
                 children: const [
                   ShopCardTile(),
@@ -51,7 +50,7 @@ class CardScreen extends StatelessWidget {
             ),
             // calculate price
             const CalculatorContainer(),
-            AddSpace().vertical(Get.height * 0.05),
+            AddSpace().vertical(MediaQuery.of(context).size.height * 0.05),
             // Buy button
             CustomButton(
               color: AppColors.primaryColor,

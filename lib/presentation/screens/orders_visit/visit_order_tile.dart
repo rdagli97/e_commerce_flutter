@@ -3,7 +3,6 @@ import 'package:flutter_e_commerce_app/presentation/global%20components/custom_t
 import 'package:flutter_e_commerce_app/resources/consts/assets_strings.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
-import 'package:get/get.dart';
 
 class VisitOrderTile extends StatelessWidget {
   const VisitOrderTile({
@@ -14,8 +13,8 @@ class VisitOrderTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
-      width: Get.width,
-      height: Get.height * 0.2,
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height * 0.2,
       decoration: BoxDecoration(
         border: Border.all(
           width: 2,
@@ -27,7 +26,7 @@ class VisitOrderTile extends StatelessWidget {
         children: [
           // Container Image
           Container(
-            width: Get.width * 0.25,
+            width: MediaQuery.of(context).size.width * 0.25,
             decoration: const BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
@@ -43,7 +42,7 @@ class VisitOrderTile extends StatelessWidget {
               children: [
                 // Title
                 SizedBox(
-                  width: Get.width * 0.36,
+                  width: MediaQuery.of(context).size.width * 0.36,
                   child: CustomText(
                     text: 'Title' * 5,
                     maxLines: 1,
@@ -54,7 +53,7 @@ class VisitOrderTile extends StatelessWidget {
                 AddSpace().vertical(5),
                 // Subtitle
                 SizedBox(
-                  width: Get.width * 0.36,
+                  width: MediaQuery.of(context).size.width * 0.36,
                   child: CustomText(
                     text: 'Subtitle' * 10,
                     maxLines: 3,

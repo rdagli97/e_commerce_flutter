@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_e_commerce_app/domain/controllers/screen_controller/edit_customer_controller.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_textformfield.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
-import 'package:get/get.dart';
 
 import '../../global components/custom_button.dart';
 import '../../../resources/style/colors.dart';
@@ -14,8 +11,6 @@ class EditAboutUsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final EditCustomerController editCustomercontroller =
-        Get.put<EditCustomerController>(EditCustomerController());
     return Scaffold(
       appBar: AppBar(
         title: const CustomText(text: 'About us'),
@@ -27,12 +22,12 @@ class EditAboutUsScreen extends StatelessWidget {
           child: Column(
             children: [
               CustomTextFormField(
-                controller: editCustomercontroller.adressController,
+                controller: TextEditingController(),
                 hintText: '',
                 maxLines: 18,
                 maxLength: 1000,
               ),
-              AddSpace().vertical(Get.height * 0.02),
+              AddSpace().vertical(MediaQuery.of(context).size.height * 0.02),
               // update button
               CustomButton(
                 onTap: () {},

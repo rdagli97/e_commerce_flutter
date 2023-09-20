@@ -9,7 +9,6 @@ import 'package:flutter_e_commerce_app/resources/style/font_sizes.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/product_detail/image_container_product.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/product_detail/piece_calculator_container.dart';
-import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ProductDetailScreen extends StatefulWidget {
@@ -47,7 +46,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     return buildImage(urlImage, index);
                   },
                   options: CarouselOptions(
-                    height: Get.height * 0.5,
+                    height: MediaQuery.of(context).size.height * 0.5,
                     enableInfiniteScroll: false,
                     enlargeCenterPage: true,
                     onPageChanged: (index, reason) =>
@@ -65,9 +64,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   child: CustomIconButton(
                     color: AppColors.inactiveColor,
                     iconData: Icons.arrow_back,
-                    onTap: () {
-                      Get.back();
-                    },
+                    onTap: () {},
                   ),
                 ),
               ],
@@ -86,8 +83,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     children: [
                       // Star rating
                       CustomStarContainer(
-                        height: Get.height * 0.07,
-                        width: Get.width * 0.2,
+                        height: MediaQuery.of(context).size.height * 0.07,
+                        width: MediaQuery.of(context).size.width * 0.2,
                         iconSize: 24,
                         rateSize: 16,
                         bgColor: AppColors.white,
@@ -98,7 +95,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         color: AppColors.grey,
                         fontSize: AppFontSizes.shopTitle12,
                       ),
-                      AddSpace().horizontal(Get.width * 0.01),
+                      AddSpace()
+                          .horizontal(MediaQuery.of(context).size.width * 0.01),
                       // Reviews
                       const CustomText(
                         text: 'Reviews',
@@ -116,7 +114,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Container(
-                        width: Get.width * 0.3,
+                        width: MediaQuery.of(context).size.width * 0.3,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 5),
                         decoration: BoxDecoration(
@@ -210,7 +208,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       },
                     ),
                   ),
-                  AddSpace().vertical(Get.height * 0.01),
+                  AddSpace()
+                      .vertical(MediaQuery.of(context).size.height * 0.01),
                   // Size
                   Row(
                     children: [
@@ -234,7 +233,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       ),
                     ],
                   ),
-                  AddSpace().vertical(Get.height * 0.01),
+                  AddSpace()
+                      .vertical(MediaQuery.of(context).size.height * 0.01),
                   Row(
                     children: [
                       PieceCalculatorContainer(
@@ -253,7 +253,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       // Add to card button
                       const Spacer(),
                       SizedBox(
-                        width: Get.width * 0.4,
+                        width: MediaQuery.of(context).size.width * 0.4,
                         child: CustomButton(
                           color: AppColors.primaryColor,
                           onTap: () {},
@@ -267,7 +267,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     ],
                   ),
 
-                  AddSpace().vertical(Get.height * 0.05),
+                  AddSpace()
+                      .vertical(MediaQuery.of(context).size.height * 0.05),
                   // Subtitle
                   CustomText(
                     text: 'Subtitle' * 100,

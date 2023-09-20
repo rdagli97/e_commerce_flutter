@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/domain/controllers/screen_controller/profile_screen_controller.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_button.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_icon_button.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_star_container.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
-import 'package:get/get.dart';
 
 import '../../../resources/consts/assets_strings.dart';
 
@@ -21,10 +19,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool isCustomer = true;
   @override
   Widget build(BuildContext context) {
-    final ProfileScreenController profileScreenController =
-        Get.put<ProfileScreenController>(
-      ProfileScreenController(),
-    );
     return Scaffold(
         body: isCustomer
             ? Padding(
@@ -89,13 +83,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: CustomIconButton(
                           iconData: Icons.remove_red_eye,
                           iconColor: AppColors.blue,
-                          onTap: profileScreenController.customerEyeViewTAP,
+                          onTap: () {},
                         ),
                       ),
                       AddSpace().vertical(10),
                       // my orders button
                       CustomButton(
-                        onTap: profileScreenController.myOrderTAP,
+                        onTap: () {},
                         child: const CustomText(
                           text: 'My orders',
                           fontWeight: FontWeight.bold,
@@ -104,7 +98,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       AddSpace().vertical(20),
                       // my comments button
                       CustomButton(
-                        onTap: profileScreenController.myCommentsTAP,
+                        onTap: () {},
                         child: const CustomText(
                           text: 'My comments',
                           fontWeight: FontWeight.bold,
@@ -113,7 +107,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       AddSpace().vertical(20),
                       // Edit profile button
                       CustomButton(
-                        onTap: profileScreenController.customerEditTAP,
+                        onTap: () {},
                         child: const CustomText(
                           text: 'Edit profile',
                           fontWeight: FontWeight.bold,
@@ -122,7 +116,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       AddSpace().vertical(20),
                       // log out button
                       CustomButton(
-                        onTap: profileScreenController.customerLogoutTAP,
+                        onTap: () {},
                         child: const CustomText(
                           text: 'Log out',
                           color: AppColors.red,
@@ -199,13 +193,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: CustomIconButton(
                           iconData: Icons.remove_red_eye,
                           iconColor: AppColors.blue,
-                          onTap: profileScreenController.companyEyeViewTAP,
+                          onTap: () {},
                         ),
                       ),
                       AddSpace().vertical(10),
                       // my orders button
                       CustomButton(
-                        onTap: profileScreenController.myProductsTAP,
+                        onTap: () {},
                         child: const CustomText(
                           text: 'My products',
                           fontWeight: FontWeight.bold,
@@ -214,7 +208,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       AddSpace().vertical(20),
                       // my sales button
                       CustomButton(
-                        onTap: profileScreenController.mySalesTAP,
+                        onTap: () {},
                         child: const CustomText(
                           text: 'My sales',
                           fontWeight: FontWeight.bold,
@@ -223,7 +217,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       AddSpace().vertical(20),
                       // Edit profile button
                       CustomButton(
-                        onTap: profileScreenController.companyEditTAP,
+                        onTap: () {},
                         child: const CustomText(
                           text: 'Edit profile',
                           fontWeight: FontWeight.bold,
@@ -232,7 +226,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       AddSpace().vertical(20),
                       // Edit about us button
                       CustomButton(
-                        onTap: profileScreenController.companyAboutUsTAP,
+                        onTap: () {},
                         child: const CustomText(
                           text: 'Edit about us',
                           fontWeight: FontWeight.bold,
@@ -241,7 +235,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       AddSpace().vertical(20),
                       // log out button
                       CustomButton(
-                        onTap: profileScreenController.companyLogoutTAP,
+                        onTap: () {},
                         child: const CustomText(
                           text: 'Log out',
                           color: AppColors.red,

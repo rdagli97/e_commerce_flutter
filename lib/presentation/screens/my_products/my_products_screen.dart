@@ -3,7 +3,6 @@ import 'package:flutter_e_commerce_app/presentation/global%20components/custom_p
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
-import 'package:get/get.dart';
 
 class MyProductsScreen extends StatefulWidget {
   const MyProductsScreen({super.key});
@@ -67,7 +66,7 @@ class _MyProductsScreenState extends State<MyProductsScreen> {
                 },
               ),
             ),
-            AddSpace().vertical(Get.height * 0.05),
+            AddSpace().vertical(MediaQuery.of(context).size.height * 0.05),
             showActiveProducts
                 ? Expanded(
                     child: ListView(

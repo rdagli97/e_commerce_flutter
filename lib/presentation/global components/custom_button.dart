@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
-import 'package:get/get.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
@@ -22,7 +21,7 @@ class CustomButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: width ?? Get.width,
+        width: width ?? MediaQuery.of(context).size.width,
         height: height,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
         decoration: BoxDecoration(

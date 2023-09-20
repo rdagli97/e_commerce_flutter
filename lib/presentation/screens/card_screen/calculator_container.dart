@@ -3,7 +3,6 @@ import 'package:flutter_e_commerce_app/presentation/global%20components/custom_t
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/style/font_sizes.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
-import 'package:get/get.dart';
 
 class CalculatorContainer extends StatelessWidget {
   const CalculatorContainer({super.key});
@@ -76,15 +75,15 @@ class CalculatorContainer extends StatelessWidget {
               ),
             ],
           ),
-          AddSpace().vertical(Get.height * 0.02),
+          AddSpace().vertical(MediaQuery.of(context).size.height * 0.02),
           Container(
-            width: Get.width,
+            width: MediaQuery.of(context).size.width,
             height: 2,
             decoration: const BoxDecoration(
               color: AppColors.inactiveColor,
             ),
           ),
-          AddSpace().vertical(Get.height * 0.02),
+          AddSpace().vertical(MediaQuery.of(context).size.height * 0.02),
           const Row(
             children: [
               // Total text

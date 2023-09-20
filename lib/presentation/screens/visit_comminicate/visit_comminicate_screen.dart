@@ -3,7 +3,6 @@ import 'package:flutter_e_commerce_app/presentation/global%20components/custom_t
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/visit_comminicate/comminicate_container.dart';
-import 'package:get/get.dart';
 
 class VisitComminicateScreen extends StatelessWidget {
   const VisitComminicateScreen({super.key});
@@ -26,10 +25,10 @@ class VisitComminicateScreen extends StatelessWidget {
           children: [
             const ComminicateContainer(
                 iconData: Icons.phone, desc: '+90 5xx 555 5555'),
-            AddSpace().vertical(Get.height * 0.02),
+            AddSpace().vertical(MediaQuery.of(context).size.height * 0.02),
             const ComminicateContainer(
                 iconData: Icons.email, desc: 'workemail@gmail.com'),
-            AddSpace().vertical(Get.height * 0.02),
+            AddSpace().vertical(MediaQuery.of(context).size.height * 0.02),
             ComminicateContainer(
               iconData: Icons.location_on,
               desc: 'LOCATION / CITY / STATE' * 20,

@@ -1,6 +1,4 @@
 class AppFontSizes {
-  AppFontSizes._();
-
   static const double header18 = 18;
 
   static const double subTitle16 = 16;

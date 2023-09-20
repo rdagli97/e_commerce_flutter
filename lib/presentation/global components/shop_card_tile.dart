@@ -5,7 +5,6 @@ import 'package:flutter_e_commerce_app/resources/consts/assets_strings.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/style/font_sizes.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
-import 'package:get/get.dart';
 
 class ShopCardTile extends StatelessWidget {
   const ShopCardTile({super.key});
@@ -19,8 +18,8 @@ class ShopCardTile extends StatelessWidget {
         children: [
           // Image
           Container(
-            width: Get.width * 0.2,
-            height: Get.height * 0.12,
+            width: MediaQuery.of(context).size.width * 0.2,
+            height: MediaQuery.of(context).size.height * 0.12,
             decoration: const BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
@@ -34,7 +33,7 @@ class ShopCardTile extends StatelessWidget {
             children: [
               // Title
               SizedBox(
-                width: Get.width * 0.35,
+                width: MediaQuery.of(context).size.width * 0.35,
                 child: CustomText(
                   text: 'Title' * 10,
                   fontWeight: FontWeight.w600,
@@ -64,7 +63,7 @@ class ShopCardTile extends StatelessWidget {
             children: [
               // price
               SizedBox(
-                width: Get.width * 0.2,
+                width: MediaQuery.of(context).size.width * 0.2,
                 child: const CustomText(
                   text: '\$ 129.99',
                   fontWeight: FontWeight.bold,

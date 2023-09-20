@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ImageContainerProduct extends StatelessWidget {
   const ImageContainerProduct({
@@ -11,7 +10,7 @@ class ImageContainerProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Get.width,
+      width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,

@@ -1,13 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/domain/controllers/screen_controller/new_product_controller.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_button.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_textformfield.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/create_new_product/container_image.dart';
-import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class CreateNewProductScreen extends StatefulWidget {
@@ -30,10 +28,6 @@ class _CreateNewProductScreenState extends State<CreateNewProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final NewProductController newProductController =
-        Get.put<NewProductController>(
-      NewProductController(),
-    );
     return Scaffold(
       appBar: AppBar(
         title: const CustomText(text: 'Create new product'),
@@ -52,7 +46,7 @@ class _CreateNewProductScreenState extends State<CreateNewProductScreen> {
                   return buildImage(urlImage, index);
                 },
                 options: CarouselOptions(
-                  height: Get.height * 0.3,
+                  height: MediaQuery.of(context).size.height * 0.3,
                   enableInfiniteScroll: false,
                   enlargeCenterPage: true,
                   onPageChanged: (index, _) =>
@@ -62,7 +56,7 @@ class _CreateNewProductScreenState extends State<CreateNewProductScreen> {
               const SizedBox(height: 12),
               // smooth page indicator
               buildIndicator(),
-              AddSpace().vertical(Get.height * 0.02),
+              AddSpace().vertical(MediaQuery.of(context).size.height * 0.02),
               Align(
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
@@ -75,28 +69,28 @@ class _CreateNewProductScreenState extends State<CreateNewProductScreen> {
                   ),
                 ),
               ),
-              AddSpace().vertical(Get.height * 0.02),
+              AddSpace().vertical(MediaQuery.of(context).size.height * 0.02),
               // Title textfield
               CustomTextFormField(
-                controller: newProductController.titleController,
+                controller: TextEditingController(),
                 hintText: 'Title',
               ),
-              AddSpace().vertical(Get.height * 0.03),
+              AddSpace().vertical(MediaQuery.of(context).size.height * 0.03),
               // Description textfield
               CustomTextFormField(
-                controller: newProductController.titleController,
+                controller: TextEditingController(),
                 hintText: 'Description',
                 maxLines: 5,
               ),
-              AddSpace().vertical(Get.height * 0.03),
+              AddSpace().vertical(MediaQuery.of(context).size.height * 0.03),
               // Price textfield
               CustomTextFormField(
-                controller: newProductController.titleController,
+                controller: TextEditingController(),
                 hintText: 'Price',
                 keyboardType: TextInputType.number,
                 suffixIconData: Icons.euro,
               ),
-              AddSpace().vertical(Get.height * 0.03),
+              AddSpace().vertical(MediaQuery.of(context).size.height * 0.03),
               // Publish the product
               CustomButton(
                 color: AppColors.primaryColor,

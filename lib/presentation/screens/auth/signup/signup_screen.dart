@@ -1,6 +1,5 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/domain/controllers/screen_controller/signup_screen_controller.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_button.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_circle_avatar.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_container.dart';
@@ -10,17 +9,13 @@ import 'package:flutter_e_commerce_app/resources/consts/strings.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/style/font_sizes.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
-import 'package:get/get.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final SignupScreenController signupScreenController =
-        SignupScreenController();
-    final Duration startDuration =
-        Duration(milliseconds: signupScreenController.startDuration);
+    const Duration startDuration = Duration(milliseconds: 200);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -32,10 +27,10 @@ class SignupScreen extends StatelessWidget {
                 children: [
                   const CustomContainer(),
                   Positioned(
-                    top: Get.height * 0.07,
-                    left: Get.width * 0.4,
+                    top: MediaQuery.of(context).size.height * 0.07,
+                    left: MediaQuery.of(context).size.width * 0.4,
                     child: GestureDetector(
-                      onTap: signupScreenController.circleAvatarTap,
+                      onTap: () {},
                       child: const CustomCircleAvatar(
                         radius: 36,
                       ),
@@ -66,7 +61,7 @@ class SignupScreen extends StatelessWidget {
                     AddSpace().vertical(5),
                     // Log in text button
                     GestureDetector(
-                      onTap: signupScreenController.logInTap,
+                      onTap: () {},
                       child: const CustomText(
                         text: AppStrings.login,
                         color: AppColors.primaryColor,
@@ -75,34 +70,34 @@ class SignupScreen extends StatelessWidget {
                     AddSpace().vertical(20),
                     // username textfield
                     CustomTextFormField(
-                      controller: signupScreenController.usernameController,
+                      controller: TextEditingController(),
                       hintText: AppStrings.username,
                     ),
                     AddSpace().vertical(10),
                     // email textfield
                     CustomTextFormField(
-                      controller: signupScreenController.emailController,
+                      controller: TextEditingController(),
                       hintText: AppStrings.email,
                       keyboardType: TextInputType.emailAddress,
                     ),
                     AddSpace().vertical(10),
                     // password textfield
                     CustomTextFormField(
-                      controller: signupScreenController.passwordController,
+                      controller: TextEditingController(),
                       hintText: AppStrings.password,
                       obscureText: true,
                     ),
                     AddSpace().vertical(10),
                     // password confirm textfield
                     CustomTextFormField(
-                      controller: signupScreenController.passwordCController,
+                      controller: TextEditingController(),
                       hintText: AppStrings.passwordC,
                       obscureText: true,
                     ),
                     AddSpace().vertical(10),
                     // sign up button
                     CustomButton(
-                      onTap: signupScreenController.signUpTap,
+                      onTap: () {},
                       color: AppColors.primaryColor,
                       child: const CustomText(
                         text: AppStrings.signup,
@@ -113,7 +108,7 @@ class SignupScreen extends StatelessWidget {
                     AddSpace().vertical(5),
                     // back button
                     CustomButton(
-                      onTap: signupScreenController.backTAP,
+                      onTap: () {},
                       child: const Icon(Icons.chevron_left_rounded),
                     ),
                   ],

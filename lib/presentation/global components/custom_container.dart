@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
-import 'package:get/get.dart';
 
 class CustomContainer extends StatelessWidget {
   const CustomContainer({
@@ -18,7 +17,7 @@ class CustomContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width ?? Get.width,
+      width: width ?? MediaQuery.of(context).size.width,
       height: height,
       decoration: BoxDecoration(
         color: color,

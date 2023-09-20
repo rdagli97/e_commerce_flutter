@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/domain/controllers/screen_controller/visit_company_controller.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_button.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_star_container.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
-import 'package:get/get.dart';
 
 import '../../../resources/consts/assets_strings.dart';
 
@@ -19,10 +17,6 @@ class VisitCompanyScreen extends StatefulWidget {
 class _VisitCompanyScreenState extends State<VisitCompanyScreen> {
   @override
   Widget build(BuildContext context) {
-    final VisitCompanyController visitCompanyController =
-        Get.put<VisitCompanyController>(
-      VisitCompanyController(),
-    );
     return Scaffold(
       appBar: AppBar(
         title: const CustomText(text: 'Company name'),
@@ -63,7 +57,7 @@ class _VisitCompanyScreenState extends State<VisitCompanyScreen> {
             AddSpace().vertical(20),
             // products button
             CustomButton(
-              onTap: visitCompanyController.productsTAP,
+              onTap: () {},
               child: const CustomText(
                 text: 'Products',
                 fontWeight: FontWeight.bold,
@@ -72,7 +66,7 @@ class _VisitCompanyScreenState extends State<VisitCompanyScreen> {
             AddSpace().vertical(20),
             // comminicate button
             CustomButton(
-              onTap: visitCompanyController.comminicateTAP,
+              onTap: () {},
               child: const CustomText(
                 text: 'Comminicate',
                 fontWeight: FontWeight.bold,
@@ -81,7 +75,7 @@ class _VisitCompanyScreenState extends State<VisitCompanyScreen> {
             AddSpace().vertical(20),
             // about us button
             CustomButton(
-              onTap: visitCompanyController.aboutUsTAP,
+              onTap: () {},
               child: const CustomText(
                 text: 'About us',
                 fontWeight: FontWeight.bold,

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/domain/controllers/screen_controller/search_screen_controller.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_category_container.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_list_tile.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_textformfield.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
-import 'package:get/get.dart';
 
 import '../../global components/custom_text.dart';
 import '../../../resources/style/colors.dart';
@@ -15,15 +13,13 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SearchScreenController searchScreenController =
-        Get.put<SearchScreenController>(SearchScreenController());
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 20),
         child: Column(
           children: [
             CustomTextFormField(
-              controller: searchScreenController.searchController,
+              controller: TextEditingController(),
               hintText: 'Search in here',
               borderEnabled: false,
               suffixIconData: Icons.search,

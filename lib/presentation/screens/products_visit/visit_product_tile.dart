@@ -4,7 +4,6 @@ import 'package:flutter_e_commerce_app/presentation/global%20components/custom_t
 import 'package:flutter_e_commerce_app/resources/consts/assets_strings.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
-import 'package:get/get.dart';
 
 class VisitProductTile extends StatelessWidget {
   const VisitProductTile({
@@ -15,8 +14,8 @@ class VisitProductTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
-      width: Get.width,
-      height: Get.height * 0.2,
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height * 0.2,
       decoration: BoxDecoration(
         border: Border.all(
           width: 2,
@@ -28,7 +27,7 @@ class VisitProductTile extends StatelessWidget {
         children: [
           // Container Image
           Container(
-            width: Get.width * 0.25,
+            width: MediaQuery.of(context).size.width * 0.25,
             decoration: const BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
@@ -44,7 +43,7 @@ class VisitProductTile extends StatelessWidget {
               children: [
                 // Title
                 SizedBox(
-                  width: Get.width * 0.36,
+                  width: MediaQuery.of(context).size.width * 0.36,
                   child: CustomText(
                     text: 'Title' * 5,
                     maxLines: 1,
@@ -55,7 +54,7 @@ class VisitProductTile extends StatelessWidget {
                 AddSpace().vertical(5),
                 // Subtitle
                 SizedBox(
-                  width: Get.width * 0.36,
+                  width: MediaQuery.of(context).size.width * 0.36,
                   child: CustomText(
                     text: 'Subtitle' * 10,
                     maxLines: 3,
@@ -75,7 +74,7 @@ class VisitProductTile extends StatelessWidget {
               children: [
                 // star rating
                 const CustomStarContainer(),
-                AddSpace().vertical(Get.height * 0.008),
+                AddSpace().vertical(MediaQuery.of(context).size.height * 0.008),
                 // $ price
                 const CustomText(
                   text: '\$ 129.99',

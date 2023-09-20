@@ -1,6 +1,5 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/domain/controllers/screen_controller/login_screen_controller.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_button.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_container.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
@@ -15,9 +14,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LoginScreenController loginScreenController = LoginScreenController();
-    final Duration startDuration =
-        Duration(milliseconds: loginScreenController.startDuration);
+    const Duration startDuration = Duration(milliseconds: 200);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -49,7 +46,7 @@ class LoginScreen extends StatelessWidget {
                     AddSpace().vertical(5),
                     // Sign up text button
                     GestureDetector(
-                      onTap: loginScreenController.signUpTap,
+                      onTap: () {},
                       child: const CustomText(
                         text: AppStrings.signup,
                         color: AppColors.primaryColor,
@@ -58,21 +55,21 @@ class LoginScreen extends StatelessWidget {
                     AddSpace().vertical(20),
                     // email textfield
                     CustomTextFormField(
-                      controller: loginScreenController.emailController,
+                      controller: TextEditingController(),
                       hintText: AppStrings.email,
                       keyboardType: TextInputType.emailAddress,
                     ),
                     AddSpace().vertical(10),
                     // password textfield
                     CustomTextFormField(
-                      controller: loginScreenController.passwordController,
+                      controller: TextEditingController(),
                       hintText: AppStrings.password,
                       obscureText: true,
                     ),
                     AddSpace().vertical(20),
                     // log in button
                     CustomButton(
-                      onTap: loginScreenController.logInTap,
+                      onTap: () {},
                       color: AppColors.primaryColor,
                       child: const CustomText(
                         text: AppStrings.login,
@@ -83,7 +80,7 @@ class LoginScreen extends StatelessWidget {
                     AddSpace().vertical(20),
                     // back button
                     CustomButton(
-                      onTap: loginScreenController.backTAP,
+                      onTap: () {},
                       child: const Icon(Icons.chevron_left_rounded),
                     ),
                   ],

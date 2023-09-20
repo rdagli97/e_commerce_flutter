@@ -4,7 +4,6 @@ import 'package:flutter_e_commerce_app/presentation/global%20components/custom_t
 import 'package:flutter_e_commerce_app/resources/consts/assets_strings.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
-import 'package:get/get.dart';
 
 class CustomCommentTile extends StatelessWidget {
   const CustomCommentTile({super.key});
@@ -14,8 +13,8 @@ class CustomCommentTile extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 13),
       margin: const EdgeInsets.only(bottom: 10),
-      width: Get.width * 0.1,
-      height: Get.height * 0.28,
+      width: MediaQuery.of(context).size.width * 0.1,
+      height: MediaQuery.of(context).size.height * 0.28,
       decoration: BoxDecoration(
         border: Border.all(
           width: 2,
@@ -40,7 +39,7 @@ class CustomCommentTile extends StatelessWidget {
                   children: [
                     // username
                     SizedBox(
-                      width: Get.width * 0.3,
+                      width: MediaQuery.of(context).size.width * 0.3,
                       child: const CustomText(
                         text: 'Username',
                         maxLines: 1,
@@ -84,7 +83,7 @@ class CustomCommentTile extends StatelessWidget {
                 AddSpace().vertical(10),
                 // Comment,
                 SizedBox(
-                  width: Get.width * 0.6,
+                  width: MediaQuery.of(context).size.width * 0.6,
                   child: CustomText(
                     text: 'Description' * 100,
                     maxLines: 4,
@@ -95,8 +94,8 @@ class CustomCommentTile extends StatelessWidget {
                 AddSpace().vertical(10),
                 // Images of products,
                 SizedBox(
-                  width: Get.width * 0.6,
-                  height: Get.height * 0.08,
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  height: MediaQuery.of(context).size.height * 0.08,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: const [
