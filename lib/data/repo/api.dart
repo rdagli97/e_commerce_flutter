@@ -163,7 +163,7 @@ class API {
       final dynamic body = convert.jsonDecode(response.body);
       switch (response.statusCode) {
         case 200:
-          apiResponse.data = UserModel.fromJson(body);
+          apiResponse.data = UserModel.fromJson(body['user']);
           break;
         case 401:
           apiResponse.error = unauthorized;
