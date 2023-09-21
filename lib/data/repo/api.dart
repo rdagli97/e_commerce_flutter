@@ -1,9 +1,7 @@
 import 'dart:convert' as convert;
 import 'dart:developer' as developer;
 
-import 'package:flutter_e_commerce_app/data/models/buyed_products.dart';
 import 'package:flutter_e_commerce_app/data/models/comment_image_model.dart';
-import 'package:flutter_e_commerce_app/data/models/comment_model.dart';
 import 'package:flutter_e_commerce_app/data/models/product_image_model.dart';
 import 'package:flutter_e_commerce_app/data/models/product_model.dart';
 import 'package:flutter_e_commerce_app/data/models/user_model.dart';
@@ -43,7 +41,7 @@ class API {
 
       switch (response.statusCode) {
         case 200:
-          apiResponse.data = UserModel.fromJson(body);
+          apiResponse.data = UserModel.fromJson(body['user']);
           break;
         case 422:
           final errors = body['errors'];
@@ -86,7 +84,7 @@ class API {
 
       switch (response.statusCode) {
         case 200:
-          apiResponse.data = UserModel.fromJson(body);
+          apiResponse.data = UserModel.fromJson(body['company']);
           break;
         case 422:
           final errors = body['errors'];
@@ -122,7 +120,7 @@ class API {
       final dynamic body = convert.jsonDecode(response.body);
       switch (response.statusCode) {
         case 200:
-          apiResponse.data = UserModel.fromJson(body);
+          apiResponse.data = UserModel.fromJson(body['user']);
           break;
         case 403:
           apiResponse.error = body['message'];
@@ -197,7 +195,7 @@ class API {
       final dynamic body = convert.jsonDecode(response.body);
       switch (response.statusCode) {
         case 200:
-          apiResponse.data = UserModel.fromJson(body);
+          apiResponse.data = UserModel.fromJson(body['user']);
           break;
         case 401:
           apiResponse.error = unauthorized;
@@ -245,7 +243,7 @@ class API {
 
       switch (response.statusCode) {
         case 200:
-          apiResponse.data = ProductsModel.fromJson(body);
+          apiResponse.data = ProductsModel.fromJson(body['product']);
           break;
         case 422:
           final errors = body['errors'];
@@ -412,7 +410,7 @@ class API {
       final dynamic body = convert.jsonDecode(response.body);
       switch (response.statusCode) {
         case 200:
-          apiResponse.data = BuyedProductsModel.fromJson(body['buyedProduct']);
+          apiResponse.data = body['message'];
           break;
         case 403:
           apiResponse.error = body['message'];
@@ -434,7 +432,7 @@ class API {
   Future<ApiResponse> createComment({
     required int rating,
     required String comment,
-    required String productId,
+    required int productId,
   }) async {
     ApiResponse apiResponse = ApiResponse();
     String? token = await SharedPreference().getToken();
@@ -458,7 +456,7 @@ class API {
       final dynamic body = convert.jsonDecode(response.body);
       switch (response.statusCode) {
         case 200:
-          apiResponse.data = CommentsModel.fromJson(body['comment']);
+          apiResponse.data = body['message'];
           break;
         case 404:
           apiResponse.error = body['message'];

@@ -1,7 +1,4 @@
 import 'dart:io';
-import 'dart:math';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/data/models/api_response.dart';
 import 'package:flutter_e_commerce_app/data/models/user_model.dart';
@@ -42,12 +39,10 @@ class UserController extends ChangeNotifier {
       image: getStringImage(file),
       phone: phone,
     );
-
+    if (!mounted) return;
     if (response.error == null) {
-      if (!mounted) return;
       saveAndGoHome(context, mounted, response.data as UserModel);
     } else {
-      if (!mounted) return;
       HandleError().showErrorMessage(context, '${response.error}');
     }
     _isloading = false;
@@ -71,11 +66,10 @@ class UserController extends ChangeNotifier {
       phone: phone,
     );
 
+    if (!mounted) return;
     if (response.error == null) {
-      if (!mounted) return;
       saveAndGoHome(context, mounted, response.data as UserModel);
     } else {
-      if (!mounted) return;
       HandleError().showErrorMessage(context, '${response.error}');
     }
     _isloading = false;
@@ -93,11 +87,10 @@ class UserController extends ChangeNotifier {
       email: email,
       password: password,
     );
+    if (!mounted) return;
     if (response.error == null) {
-      if (!mounted) return;
       saveAndGoHome(context, mounted, response.data as UserModel);
     } else {
-      if (!mounted) return;
       HandleError().showErrorMessage(context, '${response.error}');
     }
     _isloading = false;
@@ -117,16 +110,13 @@ class UserController extends ChangeNotifier {
       adress: adress,
       aboutUs: aboutUs,
     );
-
+    if (!mounted) return;
     if (response.error == null) {
       _user = response.data as UserModel;
-      if (!mounted) return;
       HandleError().showErrorMessage(context, 'User updated');
     } else if (response.error == unauthorized) {
-      if (!mounted) return;
       logoutAndGoIntroScreen(context);
     } else {
-      if (!mounted) return;
       HandleError().showErrorMessage(context, '${response.error}');
     }
     _isloading = false;
@@ -139,13 +129,12 @@ class UserController extends ChangeNotifier {
   }) async {
     _isloading = true;
     ApiResponse response = await _apiService.getCurrentUserDetails();
+    if (!mounted) return;
     if (response.error == null) {
       _user = response.data as UserModel;
     } else if (response.error == unauthorized) {
-      if (!mounted) return;
       logoutAndGoIntroScreen(context);
     } else {
-      if (!mounted) return;
       HandleError().showErrorMessage(context, '${response.error}');
     }
     _isloading = false;

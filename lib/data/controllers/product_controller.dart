@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/data/models/api_response.dart';
 import 'package:flutter_e_commerce_app/data/models/buyed_products.dart';
@@ -29,7 +28,7 @@ class ProductController extends ChangeNotifier {
   ProductsModel? get product => _product;
 
   bool _isLoading = false;
-  bool get isLoading => true;
+  bool get isLoading => _isLoading;
 
   Future<void> createProduct({
     required BuildContext context,
@@ -46,19 +45,16 @@ class ProductController extends ChangeNotifier {
       price: price,
       category: category,
     );
-
+    if (!mounted) return;
     if (response.error == null) {
-      if (!mounted) return;
       NavigateSkills().pushReplacementTo(
         context,
         const BottomNBScreen(),
       );
       HandleError().showErrorMessage(context, 'Product created!');
     } else if (response.error == unauthorized) {
-      if (!mounted) return;
       logoutAndPushIntro(context);
     } else {
-      if (!mounted) return;
       HandleError().showErrorMessage(context, '${response.error}');
     }
     _isLoading = false;
@@ -75,14 +71,13 @@ class ProductController extends ChangeNotifier {
     ApiResponse response = await _apiService.deleteProduct(
       productId: productId,
     );
+    if (!mounted) return;
     if (response.error == null) {
       if (!mounted) return;
       HandleError().showErrorMessage(context, '${response.data}');
     } else if (response.error == unauthorized) {
-      if (!mounted) return;
       logoutAndPushIntro(context);
     } else {
-      if (!mounted) return;
       HandleError().showErrorMessage(context, '${response.error}');
     }
     _isLoading = false;
@@ -100,15 +95,12 @@ class ProductController extends ChangeNotifier {
       productId: productId,
       discountValue: discountValue,
     );
-
+    if (!mounted) return;
     if (response.error == null) {
-      if (!mounted) return;
       HandleError().showErrorMessage(context, '${response.data}');
     } else if (response.error == unauthorized) {
-      if (!mounted) return;
       logoutAndPushIntro(context);
     } else {
-      if (!mounted) return;
       HandleError().showErrorMessage(context, '${response.error}');
     }
   }
@@ -119,13 +111,12 @@ class ProductController extends ChangeNotifier {
   }) async {
     _isLoading = true;
     ApiResponse response = await _apiService.getProducts();
+    if (!mounted) return;
     if (response.error == null) {
       _productList = response.data as List<ProductsModel>;
     } else if (response.error == unauthorized) {
-      if (!mounted) return;
       logoutAndPushIntro(context);
     } else {
-      if (!mounted) return;
       HandleError().showErrorMessage(context, '${response.error}');
     }
     _isLoading = false;
@@ -143,16 +134,16 @@ class ProductController extends ChangeNotifier {
       productId: productId,
       piece: piece,
     );
+    if (!mounted) return;
     if (response.error == null) {
-      _buyedProductList.add(response.data as BuyedProductsModel);
-      _saledProductList.add(response.data as SaledProductsModel);
+      HandleError().showErrorMessage(context, '${response.data}');
     } else if (response.error == unauthorized) {
-      if (!mounted) return;
       logoutAndPushIntro(context);
     } else {
-      if (!mounted) return;
       HandleError().showErrorMessage(context, '${response.error}');
     }
+    _isLoading = false;
+    notifyListeners();
   }
 
   void logoutAndPushIntro(BuildContext context) {
