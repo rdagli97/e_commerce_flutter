@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_e_commerce_app/data/models/buyed_products.dart';
 import 'package:flutter_e_commerce_app/data/models/favourite_model.dart';
 import 'package:flutter_e_commerce_app/data/models/product_model.dart';
@@ -35,14 +37,14 @@ class UserModel {
   });
 
   UserModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    username = json['username'];
-    email = json['email'];
-    phone = json['phone'];
-    image = json['image'];
-    role = json['role'];
-    adress = json['adress'];
-    aboutUs = json['about_us'];
+    id = json['user']['id'] as int?;
+    username = json['user']['username'] ?? '';
+    email = json['user']['email'] ?? '';
+    phone = json['user']['phone'] ?? '';
+    image = json['user']['image'] ?? '';
+    role = json['user']['role'] ?? '';
+    adress = json['user']['adress'] ?? '';
+    aboutUs = json['user']['about_us'] ?? '';
     token = json['token'];
     if (json['products'] != null) {
       products = <ProductsModel>[];

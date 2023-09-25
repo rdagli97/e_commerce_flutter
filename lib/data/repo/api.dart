@@ -41,7 +41,7 @@ class API {
 
       switch (response.statusCode) {
         case 200:
-          apiResponse.data = UserModel.fromJson(body['user']);
+          apiResponse.data = UserModel.fromJson(body);
           break;
         case 422:
           final errors = body['errors'];
@@ -84,7 +84,7 @@ class API {
 
       switch (response.statusCode) {
         case 200:
-          apiResponse.data = UserModel.fromJson(body['company']);
+          apiResponse.data = UserModel.fromJson(body);
           break;
         case 422:
           final errors = body['errors'];
@@ -120,7 +120,7 @@ class API {
       final dynamic body = convert.jsonDecode(response.body);
       switch (response.statusCode) {
         case 200:
-          apiResponse.data = UserModel.fromJson(body['user']);
+          apiResponse.data = UserModel.fromJson(body);
           break;
         case 403:
           apiResponse.error = body['message'];
@@ -161,7 +161,7 @@ class API {
       final dynamic body = convert.jsonDecode(response.body);
       switch (response.statusCode) {
         case 200:
-          apiResponse.data = UserModel.fromJson(body['user']);
+          apiResponse.data = UserModel.fromJson(body);
           break;
         case 401:
           apiResponse.error = unauthorized;
@@ -195,7 +195,7 @@ class API {
       final dynamic body = convert.jsonDecode(response.body);
       switch (response.statusCode) {
         case 200:
-          apiResponse.data = UserModel.fromJson(body['user']);
+          apiResponse.data = UserModel.fromJson(body);
           break;
         case 401:
           apiResponse.error = unauthorized;

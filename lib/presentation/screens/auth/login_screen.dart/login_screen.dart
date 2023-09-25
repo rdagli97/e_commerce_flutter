@@ -4,17 +4,26 @@ import 'package:flutter_e_commerce_app/presentation/global%20components/custom_b
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_container.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_textformfield.dart';
+import 'package:flutter_e_commerce_app/presentation/screens/auth/signup/signup_screen.dart';
 import 'package:flutter_e_commerce_app/resources/consts/strings.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/style/font_sizes.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
+import 'package:flutter_e_commerce_app/resources/utils/navigate_skills.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  Future<void> _loginClick() async {}
+
+  @override
   Widget build(BuildContext context) {
-    const Duration startDuration = Duration(milliseconds: 200);
+    const Duration startDuration = Duration(milliseconds: 400);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -46,7 +55,12 @@ class LoginScreen extends StatelessWidget {
                     AddSpace().vertical(5),
                     // Sign up text button
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        NavigateSkills().pushReplacementTo(
+                          context,
+                          const SignupScreen(),
+                        );
+                      },
                       child: const CustomText(
                         text: AppStrings.signup,
                         color: AppColors.primaryColor,
@@ -65,11 +79,12 @@ class LoginScreen extends StatelessWidget {
                       controller: TextEditingController(),
                       hintText: AppStrings.password,
                       obscureText: true,
+                      maxLines: 1,
                     ),
                     AddSpace().vertical(20),
                     // log in button
                     CustomButton(
-                      onTap: () {},
+                      onTap: _loginClick,
                       color: AppColors.primaryColor,
                       child: const CustomText(
                         text: AppStrings.login,
@@ -80,7 +95,9 @@ class LoginScreen extends StatelessWidget {
                     AddSpace().vertical(20),
                     // back button
                     CustomButton(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
                       child: const Icon(Icons.chevron_left_rounded),
                     ),
                   ],

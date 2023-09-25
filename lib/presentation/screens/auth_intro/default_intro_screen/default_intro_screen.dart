@@ -2,18 +2,21 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_button.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
+import 'package:flutter_e_commerce_app/presentation/screens/auth_intro/company_intro_screen/company_intro_screen.dart';
+import 'package:flutter_e_commerce_app/presentation/screens/auth_intro/intro_screen/intro_screen.dart';
 import 'package:flutter_e_commerce_app/resources/consts/assets_strings.dart';
 import 'package:flutter_e_commerce_app/resources/consts/strings.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/style/font_sizes.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
+import 'package:flutter_e_commerce_app/resources/utils/navigate_skills.dart';
 
 class DefaultIntroScreen extends StatelessWidget {
   const DefaultIntroScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    int startDuration = 200;
+    int startDuration = 400;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 13),
@@ -46,6 +49,7 @@ class DefaultIntroScreen extends StatelessWidget {
               child: const CustomText(
                 text: AppStrings.introSubtitle,
                 fontSize: AppFontSizes.description14,
+                maxLines: 5,
               ),
             ),
             AddSpace().vertical(30),
@@ -61,7 +65,12 @@ class DefaultIntroScreen extends StatelessWidget {
               child: CustomButton(
                 width: 175,
                 color: AppColors.primaryColor,
-                onTap: () {},
+                onTap: () {
+                  NavigateSkills().pushTo(
+                    context,
+                    const CompanyIntroScreen(),
+                  );
+                },
                 child: const CustomText(
                   text: AppStrings.company,
                   color: AppColors.bgColor,
@@ -80,7 +89,12 @@ class DefaultIntroScreen extends StatelessWidget {
               duration: Duration(milliseconds: startDuration * 4),
               child: CustomButton(
                 width: 175,
-                onTap: () {},
+                onTap: () {
+                  NavigateSkills().pushTo(
+                    context,
+                    const IntroScreen(),
+                  );
+                },
                 child: const CustomText(
                   text: AppStrings.customer,
                   color: AppColors.primaryColor,

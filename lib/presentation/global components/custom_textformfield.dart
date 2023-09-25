@@ -13,6 +13,7 @@ class CustomTextFormField extends StatelessWidget {
     this.borderEnabled = true,
     this.maxLines,
     this.maxLength,
+    this.validator,
   });
   final TextEditingController controller;
   final bool? obscureText;
@@ -23,6 +24,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool? borderEnabled;
   final int? maxLines;
   final int? maxLength;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +55,7 @@ class CustomTextFormField extends StatelessWidget {
         focusedBorder: outlineInputBorder,
         floatingLabelStyle: const TextStyle(color: AppColors.primaryColor),
       ),
+      validator: validator,
     );
   }
 }

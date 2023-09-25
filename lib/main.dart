@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/presentation/screens/auth_intro/intro_screen/intro_screen.dart';
-
+import 'package:flutter_e_commerce_app/data/controllers/comment_controller.dart';
+import 'package:flutter_e_commerce_app/data/controllers/favourite_controller.dart';
+import 'package:flutter_e_commerce_app/data/controllers/product_controller.dart';
+import 'package:flutter_e_commerce_app/data/controllers/user_controller.dart';
+import 'package:flutter_e_commerce_app/presentation/screens/auth/loading_screen/loading_screen.dart';
+import 'package:provider/provider.dart';
 import 'resources/style/colors.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserController()),
+        ChangeNotifierProvider(create: (_) => ProductController()),
+        ChangeNotifierProvider(create: (_) => FavouriteController()),
+        ChangeNotifierProvider(create: (_) => CommentController()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +35,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
         useMaterial3: true,
       ),
-      home: const IntroScreen(),
+      home: const LoadingScreen(),
     );
   }
 }
