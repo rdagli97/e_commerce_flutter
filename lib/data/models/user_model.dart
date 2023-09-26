@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter_e_commerce_app/data/models/buyed_products.dart';
 import 'package:flutter_e_commerce_app/data/models/favourite_model.dart';
 import 'package:flutter_e_commerce_app/data/models/product_model.dart';
@@ -42,7 +40,7 @@ class UserModel {
     email = json['user']['email'] ?? '';
     phone = json['user']['phone'] ?? '';
     image = json['user']['image'] ?? '';
-    role = json['user']['role'] ?? '';
+    role = json['user']['role'] ?? 0;
     adress = json['user']['adress'] ?? '';
     aboutUs = json['user']['about_us'] ?? '';
     token = json['token'];

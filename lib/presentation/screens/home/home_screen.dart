@@ -1,13 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce_app/data/models/user_model.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_list_tile.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
 import 'package:flutter_e_commerce_app/resources/consts/assets_strings.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/style/font_sizes.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
+import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+import '../../../data/controllers/user_controller.dart';
+
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  UserModel? user;
+
+  Future<void> initUser() async {
+    user = context.read<UserController>().user;
+  }
+
+  @override
+  void initState() {
+    initUser();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,29 +38,33 @@ class HomeScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const Row(
+              Row(
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // welcome back! text
-                      CustomText(
+                      const CustomText(
                         text: 'Welcome back!',
                         fontSize: AppFontSizes.shopTitle12,
                       ),
                       // username text
                       CustomText(
-                        text: 'rdagli97',
+                        text: '${user?.username}',
                         fontSize: AppFontSizes.description14,
                         fontWeight: FontWeight.bold,
                       ),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   // pp image
-                  CircleAvatar(
-                    backgroundImage: AssetImage(AppAssets.profile4Asset),
-                  ),
+                  user?.image == ''
+                      ? const CircleAvatar(
+                          backgroundImage: AssetImage(AppAssets.profile4Asset),
+                        )
+                      : CircleAvatar(
+                          backgroundImage: NetworkImage('${user?.image}'),
+                        )
                 ],
               ),
               AddSpace().vertical(50),
@@ -81,7 +106,7 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   // Explore
                   const CustomText(
-                    text: 'Explore',
+                    text: 'On sale now',
                     fontSize: AppFontSizes.subTitle16,
                     fontWeight: FontWeight.bold,
                   ),
@@ -113,9 +138,9 @@ class HomeScreen extends StatelessWidget {
               ),
               Row(
                 children: [
-                  // On sale
+                  // Explore new products
                   const CustomText(
-                    text: 'On Sale now',
+                    text: 'Explore new products',
                     fontSize: AppFontSizes.subTitle16,
                     fontWeight: FontWeight.bold,
                   ),

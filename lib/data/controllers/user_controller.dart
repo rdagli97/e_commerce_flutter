@@ -6,7 +6,7 @@ import 'package:flutter_e_commerce_app/data/models/user_model.dart';
 import 'package:flutter_e_commerce_app/data/repo/api.dart';
 import 'package:flutter_e_commerce_app/data/repo/shared_preference.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/auth/loading_screen/loading_screen.dart';
-import 'package:flutter_e_commerce_app/presentation/screens/auth_intro/intro_screen/intro_screen.dart';
+import 'package:flutter_e_commerce_app/presentation/screens/auth_intro/default_intro_screen/default_intro_screen.dart';
 import 'package:flutter_e_commerce_app/resources/consts/service_strings.dart';
 import 'package:flutter_e_commerce_app/resources/utils/handle_error.dart';
 import 'package:flutter_e_commerce_app/resources/utils/navigate_skills.dart';
@@ -43,6 +43,7 @@ class UserController extends ChangeNotifier {
     if (!mounted) return;
     if (response.error == null) {
       saveAndGoHome(context, mounted, response.data as UserModel);
+      _user = response.data as UserModel;
     } else {
       HandleError().showErrorMessage(context, '${response.error}');
     }
@@ -70,6 +71,7 @@ class UserController extends ChangeNotifier {
     if (!mounted) return;
     if (response.error == null) {
       saveAndGoHome(context, mounted, response.data as UserModel);
+      _user = response.data as UserModel;
       log(
         response.data.toString(),
       );
@@ -94,6 +96,7 @@ class UserController extends ChangeNotifier {
     if (!mounted) return;
     if (response.error == null) {
       saveAndGoHome(context, mounted, response.data as UserModel);
+      _user = response.data as UserModel;
     } else {
       HandleError().showErrorMessage(context, '${response.error}');
     }
@@ -149,7 +152,7 @@ class UserController extends ChangeNotifier {
     SharedPreference().logout().then(
           (value) => NavigateSkills().pushReplacementTo(
             context,
-            const IntroScreen(),
+            const DefaultIntroScreen(),
           ),
         );
   }

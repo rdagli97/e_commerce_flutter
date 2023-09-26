@@ -7,8 +7,8 @@ class NavigateSkills {
     );
   }
 
-  pushReplacementTo(BuildContext context, Widget widget) {
-    Navigator.of(context).pushReplacement(
+  Future<void> pushReplacementTo(BuildContext context, Widget widget) async {
+    await Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (context) => widget),
     );
   }

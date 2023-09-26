@@ -29,7 +29,7 @@ class _CompanyRegisterScreenState extends State<CompanyRegisterScreen> {
   final TextEditingController _passwordCController = TextEditingController();
 
   Future<void> _signUpClick() async {
-    context.read<UserController>().registerCompany(
+    await context.read<UserController>().registerCompany(
           context: context,
           mounted: mounted,
           username: _usernameController.text,
@@ -159,9 +159,9 @@ class _CompanyRegisterScreenState extends State<CompanyRegisterScreen> {
                       AddSpace().vertical(10),
                       // sign up button
                       CustomButton(
-                        onTap: () {
+                        onTap: () async {
                           if (formKey.currentState!.validate()) {
-                            _signUpClick();
+                            await _signUpClick();
                           }
                         },
                         color: AppColors.primaryColor,
