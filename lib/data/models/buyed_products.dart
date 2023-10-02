@@ -3,7 +3,7 @@ class BuyedProductsModel {
   int? userId;
   String? title;
   String? description;
-  int? price;
+  double? price;
   int? piece;
   String? image;
 
@@ -18,12 +18,12 @@ class BuyedProductsModel {
   });
 
   BuyedProductsModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    userId = json['user_id'];
-    title = json['title'];
-    description = json['description'];
-    price = json['price'];
-    piece = json['piece'];
-    image = json['image'];
+    id = json['buyedProducts']['id'];
+    userId = json['buyedProducts']['user_id'];
+    title = json['buyedProducts']['title'];
+    description = json['buyedProducts']['description'];
+    price = json['buyedProducts']['price'];
+    piece = json['buyedProducts']['piece'];
+    image = json['buyedProducts']['image'];
   }
 }

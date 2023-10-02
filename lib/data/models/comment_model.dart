@@ -20,11 +20,11 @@ class CommentsModel {
   });
 
   CommentsModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    userId = json['user_id'];
-    comment = json['comment'];
-    productId = json['product_id'];
-    rating = json['rating'];
+    id = json['comments']['id'];
+    userId = json['comments']['user_id'];
+    comment = json['comments']['comment'];
+    productId = json['comments']['product_id'];
+    rating = json['comments']['rating'];
     if (json['comment_images'] != null) {
       commentImages = <CommentImageModel>[];
       json['comment_images'].forEach((v) {

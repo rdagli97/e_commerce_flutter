@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce_app/data/controllers/user_controller.dart';
 import 'package:flutter_e_commerce_app/data/models/api_response.dart';
 import 'package:flutter_e_commerce_app/data/models/buyed_products.dart';
 import 'package:flutter_e_commerce_app/data/models/product_model.dart';
@@ -9,6 +12,8 @@ import 'package:flutter_e_commerce_app/presentation/screens/bottom_nb/bottom_nb_
 import 'package:flutter_e_commerce_app/resources/consts/service_strings.dart';
 import 'package:flutter_e_commerce_app/resources/utils/handle_error.dart';
 import 'package:flutter_e_commerce_app/resources/utils/navigate_skills.dart';
+import 'package:flutter_e_commerce_app/resources/utils/pick_image.dart';
+import 'package:provider/provider.dart';
 
 import '../repo/shared_preference.dart';
 
@@ -23,6 +28,9 @@ class ProductController extends ChangeNotifier {
 
   final List<SaledProductsModel> _saledProductList = [];
   List<SaledProductsModel> get saledProductList => _saledProductList;
+
+  final List<File?> _productImages = [];
+  List<File?> get productImages => _productImages;
 
   ProductsModel? _product;
   ProductsModel? get product => _product;
@@ -143,6 +151,41 @@ class ProductController extends ChangeNotifier {
       HandleError().showErrorMessage(context, '${response.error}');
     }
     _isLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> createProductImage({
+    required BuildContext context,
+    required bool mounted,
+    required File? image,
+  }) async {
+    _isLoading = true;
+    await context
+        .read<UserController>()
+        .getCurrentUserDetails(context: context, mounted: mounted);
+    if (!mounted) return;
+    ApiResponse response = await _apiService.createProductImage(
+      image: getStringImage(image),
+      productId: context.read<UserController>().user?.products?.last.id ?? -1,
+    );
+    if (!mounted) return;
+    if (response.error == null) {
+      HandleError().showErrorMessage(context, 'Photo added successfully');
+      NavigateSkills().pushReplacementTo(
+        context,
+        const BottomNBScreen(),
+      );
+    } else if (response.error == unauthorized) {
+      logoutAndPushIntro(context);
+    } else {
+      HandleError().showErrorMessage(context, '${response.error}');
+    }
+    _isLoading = false;
+    notifyListeners();
+  }
+
+  void addPhotoToList(File? imageUrl) {
+    productImages.add(imageUrl);
     notifyListeners();
   }
 

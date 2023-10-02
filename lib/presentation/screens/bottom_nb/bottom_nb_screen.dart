@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/data/controllers/user_controller.dart';
 import 'package:flutter_e_commerce_app/data/enums/bottom_navigation_bar_enum.dart';
 import 'package:flutter_e_commerce_app/data/models/user_model.dart';
+import 'package:flutter_e_commerce_app/presentation/screens/card_screen/card_screen.dart';
+import 'package:flutter_e_commerce_app/presentation/screens/create_new_product/create_new_product_screen.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/favorite/favorite_screen.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/home/home_screen.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/profile/profile_screen.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/search/search_screen.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
+import 'package:flutter_e_commerce_app/resources/utils/navigate_skills.dart';
 import 'package:provider/provider.dart';
 
 class BottomNBScreen extends StatefulWidget {
@@ -65,13 +68,16 @@ class _BottomNBScreenState extends State<BottomNBScreen> {
       floatingActionButton: user?.role == 0
           ? FloatingActionButton(
               onPressed: () {
-                // go to shopping page
+                // go to card page
+                NavigateSkills().pushTo(context, const CardScreen());
               },
               child: const Icon(Icons.shopping_basket_rounded),
             )
           : FloatingActionButton(
               onPressed: () {
                 // go to add new product
+                NavigateSkills()
+                    .pushTo(context, const CreateNewProductScreen());
               },
               child: const Icon(Icons.add),
             ),

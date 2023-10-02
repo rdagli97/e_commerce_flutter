@@ -18,6 +18,7 @@ class API {
     required String password,
     required String image,
     required String phone,
+    required String gender,
   }) async {
     ApiResponse apiResponse = ApiResponse();
 
@@ -34,6 +35,7 @@ class API {
           'password_confirmation': password,
           'image': image,
           'phone': phone,
+          'gender': gender,
         },
       );
 
@@ -62,6 +64,7 @@ class API {
     required String email,
     required String password,
     required String phone,
+    required String image,
   }) async {
     ApiResponse apiResponse = ApiResponse();
 
@@ -77,6 +80,7 @@ class API {
           'password': password,
           'password_confirmation': password,
           'phone': phone,
+          'image': image,
         },
       );
 
@@ -136,7 +140,6 @@ class API {
   }
 
   Future<ApiResponse> updateUser({
-    required String image,
     required String adress,
     required String aboutUs,
   }) async {
@@ -155,7 +158,7 @@ class API {
           'Accept': applicationJson,
           'Authorization': 'Bearer $token',
         },
-        body: {'image': image, 'adress': adress, 'about_us': aboutUs},
+        body: {'adress': adress, 'about_us': aboutUs},
       );
 
       final dynamic body = convert.jsonDecode(response.body);
@@ -234,7 +237,7 @@ class API {
         body: {
           'title': title,
           'description': description,
-          'price': price,
+          'price': price.toString(),
           'category': category,
         },
       );
@@ -243,7 +246,7 @@ class API {
 
       switch (response.statusCode) {
         case 200:
-          apiResponse.data = ProductsModel.fromJson(body['product']);
+          apiResponse.data = ProductsModel.fromJson(body);
           break;
         case 422:
           final errors = body['errors'];
@@ -576,7 +579,7 @@ class API {
       final dynamic body = convert.jsonDecode(response.body);
       switch (response.statusCode) {
         case 200:
-          apiResponse.data = ProductImageModel.fromJson(body['productImage']);
+          apiResponse.data = ProductImageModel.fromJson(body);
           break;
         case 403:
           apiResponse.error = body['message'];
@@ -618,7 +621,7 @@ class API {
       final dynamic body = convert.jsonDecode(response.body);
       switch (response.statusCode) {
         case 200:
-          apiResponse.data = CommentImageModel.fromJson(body['commentImage']);
+          apiResponse.data = CommentImageModel.fromJson(body);
           break;
         case 404:
           apiResponse.error = body['message'];

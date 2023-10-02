@@ -4,7 +4,6 @@ import 'package:flutter_e_commerce_app/data/controllers/favourite_controller.dar
 import 'package:flutter_e_commerce_app/data/controllers/product_controller.dart';
 import 'package:flutter_e_commerce_app/data/controllers/user_controller.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/auth/loading_screen/loading_screen.dart';
-import 'package:flutter_e_commerce_app/presentation/screens/auth_intro/default_intro_screen/default_intro_screen.dart';
 import 'package:provider/provider.dart';
 import 'resources/style/colors.dart';
 

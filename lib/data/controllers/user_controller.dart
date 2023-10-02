@@ -1,5 +1,3 @@
-import 'dart:developer';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/data/models/api_response.dart';
 import 'package:flutter_e_commerce_app/data/models/user_model.dart';
@@ -10,11 +8,31 @@ import 'package:flutter_e_commerce_app/presentation/screens/auth_intro/default_i
 import 'package:flutter_e_commerce_app/resources/consts/service_strings.dart';
 import 'package:flutter_e_commerce_app/resources/utils/handle_error.dart';
 import 'package:flutter_e_commerce_app/resources/utils/navigate_skills.dart';
-import 'package:flutter_e_commerce_app/resources/utils/pick_image.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserController extends ChangeNotifier {
   final API _apiService = API();
+
+  final List<String> _malePPs = [
+    "assets/pps/profile1.png",
+    "assets/pps/profile2.png",
+    "assets/pps/profile4.png",
+  ];
+  final List<String> _femalePPs = [
+    "assets/pps/profile3.png",
+    "assets/pps/profile5.png",
+    "assets/pps/profile6.png",
+  ];
+  final List<String> _companyPPs = [
+    "assets/pps/company_icon1.png",
+    "assets/pps/company_icon2.png",
+    "assets/pps/company_icon3.png",
+    "assets/pps/company_icon4.png",
+    "assets/pps/company_icon5.png",
+    "assets/pps/company_icon6.png",
+    "assets/pps/company_icon7.png",
+    "assets/pps/company_icon8.png",
+  ];
 
   UserModel? _user;
   UserModel? get user => _user;
@@ -30,15 +48,17 @@ class UserController extends ChangeNotifier {
     required String email,
     required String password,
     required String phone,
-    required File? file,
+    required String gender,
   }) async {
     _isloading = true;
+    shuffleLists();
     ApiResponse response = await _apiService.registerCustomer(
       username: username,
       email: email,
       password: password,
-      image: getStringImage(file),
+      image: gender == 'male' ? _malePPs[0] : _femalePPs[0],
       phone: phone,
+      gender: gender,
     );
     if (!mounted) return;
     if (response.error == null) {
@@ -61,20 +81,19 @@ class UserController extends ChangeNotifier {
     required bool mounted,
   }) async {
     _isloading = true;
+    shuffleLists();
     ApiResponse response = await _apiService.registerCompany(
       username: username,
       email: email,
       password: password,
       phone: phone,
+      image: _companyPPs[0],
     );
 
     if (!mounted) return;
     if (response.error == null) {
       saveAndGoHome(context, mounted, response.data as UserModel);
       _user = response.data as UserModel;
-      log(
-        response.data.toString(),
-      );
     } else {
       HandleError().showErrorMessage(context, '${response.error}');
     }
@@ -107,13 +126,11 @@ class UserController extends ChangeNotifier {
   Future<void> updateUser({
     required BuildContext context,
     required bool mounted,
-    required String image,
     required String adress,
     required String aboutUs,
   }) async {
     _isloading = true;
     ApiResponse response = await _apiService.updateUser(
-      image: image,
       adress: adress,
       aboutUs: aboutUs,
     );
@@ -148,8 +165,14 @@ class UserController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void logoutAndGoIntroScreen(BuildContext context) {
-    SharedPreference().logout().then(
+  void shuffleLists() {
+    _malePPs.shuffle();
+    _femalePPs.shuffle();
+    _companyPPs.shuffle();
+  }
+
+  Future<void> logoutAndGoIntroScreen(BuildContext context) async {
+    await SharedPreference().logout().then(
           (value) => NavigateSkills().pushReplacementTo(
             context,
             const DefaultIntroScreen(),

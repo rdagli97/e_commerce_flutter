@@ -12,12 +12,14 @@ class CustomStarContainer extends StatelessWidget {
     this.iconSize,
     this.rateSize,
     this.bgColor,
+    this.rate,
   });
   final double? height;
   final double? width;
   final double? iconSize;
   final double? rateSize;
   final Color? bgColor;
+  final double? rate;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class CustomStarContainer extends StatelessWidget {
           AddSpace().horizontal(5),
           // rate
           CustomText(
-            text: '4.9',
+            text: '$rate',
             fontSize: rateSize ?? AppFontSizes.unImportant10,
             fontWeight: FontWeight.bold,
           ),

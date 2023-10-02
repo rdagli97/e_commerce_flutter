@@ -6,12 +6,13 @@ class ProductsModel {
   int? userId;
   String? title;
   String? description;
-  int? price;
+  double? price;
   String? category;
   int? rate;
   int? discount;
   int? online;
   String? image;
+  bool? selfFavourited;
   List<ProductImageModel>? productImages;
   List<CommentsModel>? comments;
 
@@ -28,30 +29,38 @@ class ProductsModel {
     this.image,
     this.comments,
     this.productImages,
+    this.selfFavourited,
   });
 
   ProductsModel.fromJson(Map<String, dynamic> json) {
+    var productImageList = json['product_images'] as List?;
+    List<ProductImageModel> productImage = [];
+
+    if (productImageList != null) {
+      productImage =
+          productImageList.map((e) => ProductImageModel.fromJson(e)).toList();
+    }
+
+    var commentsList = json['comments'] as List?;
+    List<CommentsModel> comment = [];
+
+    if (commentsList != null) {
+      comment = commentsList.map((e) => CommentsModel.fromJson(e)).toList();
+    }
+
     id = json['id'];
     userId = json['user_id'];
     title = json['title'];
     description = json['description'];
-    price = json['price'];
+    price = double.tryParse(json['price'].toString());
     category = json['category'];
     rate = json['rate'];
     discount = json['discount'];
     online = json['online'];
     image = json['image'];
-    if (json['product_images'] != null) {
-      productImages = <ProductImageModel>[];
-      json['product_images'].forEach((v) {
-        productImages!.add(ProductImageModel.fromJson(v));
-      });
-    }
-    if (json['comments'] != null) {
-      comments = <CommentsModel>[];
-      json['comments'].forEach((v) {
-        comments!.add(CommentsModel.fromJson(v));
-      });
-    }
+    selfFavourited =
+        json['favourites'] != null && json['favourites'].length > 0;
+    productImages = productImage;
+    comments = comment;
   }
 }

@@ -3,7 +3,7 @@ class SaledProductsModel {
   int? userId;
   String? title;
   String? description;
-  int? price;
+  double? price;
   int? piece;
   String? image;
 

@@ -5,7 +5,7 @@ class ImageContainerProduct extends StatelessWidget {
     super.key,
     required this.imageUrl,
   });
-  final String imageUrl;
+  final String? imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class ImageContainerProduct extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: NetworkImage(imageUrl),
+          image: NetworkImage(imageUrl ?? ''),
         ),
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(12),

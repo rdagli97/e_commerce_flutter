@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/data/models/user_model.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_list_tile.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
-import 'package:flutter_e_commerce_app/resources/consts/assets_strings.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/style/font_sizes.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
 import 'package:provider/provider.dart';
-
 import '../../../data/controllers/user_controller.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,20 +15,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  UserModel? user;
-
-  Future<void> initUser() async {
-    user = context.read<UserController>().user;
-  }
-
-  @override
-  void initState() {
-    initUser();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final userRead = context.read<UserController>().user;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 20),
@@ -50,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       // username text
                       CustomText(
-                        text: '${user?.username}',
+                        text: '${userRead?.username}',
                         fontSize: AppFontSizes.description14,
                         fontWeight: FontWeight.bold,
                       ),
@@ -58,13 +44,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const Spacer(),
                   // pp image
-                  user?.image == ''
-                      ? const CircleAvatar(
-                          backgroundImage: AssetImage(AppAssets.profile4Asset),
-                        )
-                      : CircleAvatar(
-                          backgroundImage: NetworkImage('${user?.image}'),
-                        )
+                  CircleAvatar(
+                    backgroundColor: AppColors.white,
+                    backgroundImage: AssetImage('${userRead?.image}'),
+                  )
                 ],
               ),
               AddSpace().vertical(50),

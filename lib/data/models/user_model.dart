@@ -13,6 +13,7 @@ class UserModel {
   String? adress;
   String? aboutUs;
   String? token;
+  String? gender;
   List<ProductsModel>? products;
   List<BuyedProductsModel>? buyedProducts;
   List<SaledProductsModel>? saledProducts;
@@ -32,41 +33,56 @@ class UserModel {
     this.saledProducts,
     this.favouriteProducts,
     this.token,
+    this.gender,
   });
 
-  UserModel.fromJson(Map<String, dynamic> json) {
-    id = json['user']['id'] as int?;
-    username = json['user']['username'] ?? '';
-    email = json['user']['email'] ?? '';
-    phone = json['user']['phone'] ?? '';
-    image = json['user']['image'] ?? '';
-    role = json['user']['role'] ?? 0;
-    adress = json['user']['adress'] ?? '';
-    aboutUs = json['user']['about_us'] ?? '';
-    token = json['token'];
-    if (json['products'] != null) {
-      products = <ProductsModel>[];
-      json['products'].forEach((v) {
-        products!.add(ProductsModel.fromJson(v));
-      });
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    var productList = json['user']['products'] as List?;
+    List<ProductsModel> products = [];
+
+    if (productList != null) {
+      products = productList.map((e) => ProductsModel.fromJson(e)).toList();
     }
-    if (json['buyed_products'] != null) {
-      buyedProducts = <BuyedProductsModel>[];
-      json['buyed_products'].forEach((v) {
-        buyedProducts!.add(BuyedProductsModel.fromJson(v));
-      });
+
+    var buyedProductList = json['user']['buyed_products'] as List?;
+    List<BuyedProductsModel> buyedProducts = [];
+
+    if (buyedProductList != null) {
+      buyedProducts =
+          buyedProductList.map((e) => BuyedProductsModel.fromJson(e)).toList();
     }
-    if (json['saled_products'] != null) {
-      saledProducts = <SaledProductsModel>[];
-      json['saled_products'].forEach((v) {
-        saledProducts!.add(SaledProductsModel.fromJson(v));
-      });
+
+    var saledProductList = json['user']['saled_products'] as List?;
+    List<SaledProductsModel> saledProducts = [];
+
+    if (saledProductList != null) {
+      saledProducts =
+          saledProductList.map((e) => SaledProductsModel.fromJson(e)).toList();
     }
-    if (json['favourites'] != null) {
-      favouriteProducts = <FavouriteModel>[];
-      json['favourites'].forEach((v) {
-        favouriteProducts!.add(FavouriteModel.fromJson(v));
-      });
+
+    var favouriteProductsList = json['user']['favourites'] as List?;
+    List<FavouriteModel> favourites = [];
+
+    if (favouriteProductsList != null) {
+      favourites =
+          favouriteProductsList.map((e) => FavouriteModel.fromJson(e)).toList();
     }
+
+    return UserModel(
+      id: json['user']['id'],
+      username: json['user']['username'],
+      email: json['user']['email'],
+      phone: json['user']['phone'],
+      image: json['user']['image'],
+      role: json['user']['role'],
+      adress: json['user']['adress'],
+      aboutUs: json['user']['aboutUs'],
+      gender: json['user']['gender'],
+      token: json['token'],
+      products: products,
+      buyedProducts: buyedProducts,
+      saledProducts: saledProducts,
+      favouriteProducts: favourites,
+    );
   }
 }

@@ -12,9 +12,9 @@ class CommentImageModel {
   });
 
   CommentImageModel.fromJson(Map<String, dynamic> json) {
-    image = json['image'];
-    commentId = json['comment_id'];
-    userId = json['user_id'];
-    id = json['id'];
+    image = json['comment_images']['image'];
+    commentId = json['comment_images']['comment_id'];
+    userId = json['comment_images']['user_id'];
+    id = json['comment_images']['id'];
   }
 }

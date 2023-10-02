@@ -4,28 +4,24 @@ import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 class CustomCircleAvatar extends StatelessWidget {
   const CustomCircleAvatar({
     super.key,
-    this.radius,
-    this.bgColor,
-    this.bgImage,
+    this.isBorderEnabled = false,
+    required this.image,
   });
-  final double? radius;
-  final Color? bgColor;
-  final ImageProvider<Object>? bgImage;
+  final bool isBorderEnabled;
+  final DecorationImage? image;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: isBorderEnabled ? 120 : 90,
+      width: isBorderEnabled ? 120 : 90,
       decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(
-          color: AppColors.white,
-          width: 4,
-        ),
-      ),
-      child: CircleAvatar(
-        radius: radius ?? 24,
-        backgroundColor: bgColor,
-        backgroundImage: bgImage,
+        image: image,
+        color: AppColors.lightGreen,
+        borderRadius: BorderRadius.circular(360),
+        border: isBorderEnabled
+            ? Border.all(color: AppColors.primaryColor, width: 3)
+            : null,
       ),
     );
   }

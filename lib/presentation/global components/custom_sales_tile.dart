@@ -10,9 +10,17 @@ class CustomSalestile extends StatelessWidget {
     super.key,
     this.statusColor,
     this.statusText,
+    required this.description,
+    required this.title,
+    required this.piece,
+    required this.price,
   });
   final String? statusText;
   final Color? statusColor;
+  final String title;
+  final String description;
+  final int piece;
+  final double price;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +57,7 @@ class CustomSalestile extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.36,
                   child: CustomText(
-                    text: 'Title' * 5,
+                    text: title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     fontWeight: FontWeight.bold,
@@ -60,7 +68,7 @@ class CustomSalestile extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.36,
                   child: CustomText(
-                    text: 'Subtitle' * 10,
+                    text: description,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     fontSize: 13,
@@ -88,10 +96,10 @@ class CustomSalestile extends StatelessWidget {
                 const CustomStarContainer(),
                 AddSpace().vertical(MediaQuery.of(context).size.height * 0.008),
                 // piece
-                const CustomText(text: '1x'),
+                CustomText(text: '$piece'),
                 // $ price
-                const CustomText(
-                  text: '\$ 129.99',
+                CustomText(
+                  text: '\$ $price',
                   fontWeight: FontWeight.bold,
                 ),
               ],

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_icon_button.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_star_container.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
-import 'package:flutter_e_commerce_app/resources/consts/assets_strings.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
 
@@ -11,9 +10,19 @@ class CustomOrderTile extends StatelessWidget {
     super.key,
     this.statusColor,
     this.statusText,
+    required this.title,
+    required this.description,
+    required this.imageUrl,
+    required this.piece,
+    required this.price,
   });
   final String? statusText;
   final Color? statusColor;
+  final String imageUrl;
+  final String title;
+  final String description;
+  final int piece;
+  final double price;
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +42,10 @@ class CustomOrderTile extends StatelessWidget {
           // Container Image
           Container(
             width: MediaQuery.of(context).size.width * 0.25,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage(AppAssets.watch1Asset),
+                image: NetworkImage(imageUrl),
               ),
             ),
           ),
@@ -50,7 +59,7 @@ class CustomOrderTile extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.36,
                   child: CustomText(
-                    text: 'Title' * 5,
+                    text: title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     fontWeight: FontWeight.bold,
@@ -61,7 +70,7 @@ class CustomOrderTile extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.36,
                   child: CustomText(
-                    text: 'Subtitle' * 10,
+                    text: description,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     fontSize: 13,
@@ -93,12 +102,12 @@ class CustomOrderTile extends StatelessWidget {
                 // star rating
                 const CustomStarContainer(),
                 // piece
-                const CustomText(
-                  text: '1x',
+                CustomText(
+                  text: '$piece',
                 ),
                 // $ price
-                const CustomText(
-                  text: '\$ 129.99',
+                CustomText(
+                  text: '\$ $price',
                   fontWeight: FontWeight.bold,
                 ),
               ],

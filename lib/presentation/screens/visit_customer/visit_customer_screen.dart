@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce_app/data/controllers/user_controller.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_button.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
+import 'package:flutter_e_commerce_app/presentation/screens/comments_visit/comments_visit_screen.dart';
+import 'package:flutter_e_commerce_app/presentation/screens/orders_visit/orders_visit_screen.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
-
-import '../../../resources/consts/assets_strings.dart';
+import 'package:flutter_e_commerce_app/resources/utils/navigate_skills.dart';
+import 'package:provider/provider.dart';
 
 class VisitCustomerScreen extends StatefulWidget {
   const VisitCustomerScreen({super.key});
@@ -16,9 +19,10 @@ class VisitCustomerScreen extends StatefulWidget {
 class _VisitCustomerScreenState extends State<VisitCustomerScreen> {
   @override
   Widget build(BuildContext context) {
+    final userRead = context.read<UserController>().user;
     return Scaffold(
       appBar: AppBar(
-        title: const CustomText(text: 'Username'),
+        title: CustomText(text: '${userRead?.username}'),
         centerTitle: true,
       ),
       body: Padding(
@@ -27,33 +31,36 @@ class _VisitCustomerScreenState extends State<VisitCustomerScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Image
-            const CircleAvatar(
+            CircleAvatar(
               backgroundColor: AppColors.white,
               radius: 64,
-              backgroundImage: AssetImage(
-                AppAssets.profile5Asset,
-              ),
+              backgroundImage: AssetImage('${userRead?.image}'),
             ),
             AddSpace().vertical(20),
             // username
-            const CustomText(
-              text: 'Username',
+            CustomText(
+              text: '${userRead?.username}',
               fontWeight: FontWeight.bold,
             ),
             AddSpace().vertical(5),
             // email
-            const CustomText(
-              text: 'useremail@gmail.com',
+            CustomText(
+              text: '${userRead?.email}',
             ),
             AddSpace().vertical(5),
             // Phone
-            const CustomText(
-              text: '+(90) 05xx 555 5555',
+            CustomText(
+              text: '${userRead?.phone}',
             ),
             AddSpace().vertical(20),
             // my orders button
             CustomButton(
-              onTap: () {},
+              onTap: () {
+                NavigateSkills().pushTo(
+                  context,
+                  const OrdersVisitScreen(),
+                );
+              },
               child: const CustomText(
                 text: 'Orders',
                 fontWeight: FontWeight.bold,
@@ -62,7 +69,12 @@ class _VisitCustomerScreenState extends State<VisitCustomerScreen> {
             AddSpace().vertical(20),
             // my comments button
             CustomButton(
-              onTap: () {},
+              onTap: () {
+                NavigateSkills().pushTo(
+                  context,
+                  const CommentsVisitScreen(),
+                );
+              },
               child: const CustomText(
                 text: 'Comments',
                 fontWeight: FontWeight.bold,

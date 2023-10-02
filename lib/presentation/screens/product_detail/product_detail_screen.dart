@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce_app/data/models/product_model.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_button.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_icon_button.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_star_container.dart';
@@ -12,7 +13,11 @@ import 'package:flutter_e_commerce_app/presentation/screens/product_detail/piece
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ProductDetailScreen extends StatefulWidget {
-  const ProductDetailScreen({super.key});
+  const ProductDetailScreen({
+    super.key,
+    this.productsModel,
+  });
+  final ProductsModel? productsModel;
 
   @override
   State<ProductDetailScreen> createState() => _ProductDetailScreenState();
@@ -23,13 +28,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   int piece = 0;
   int activeIndex = 0;
   final CarouselController controller = CarouselController();
-  final List<String> urlImages = [
+  /*final List<String> urlImages = [
     "https://i.pinimg.com/1200x/a5/af/29/a5af297cc589e13706929afb0015aabd.jpg",
     "https://i.pinimg.com/originals/db/12/fe/db12fea16a6836ac1a7580921983fa06.jpg",
     "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8d2F0Y2h8ZW58MHx8MHx8fDA%3D&w=1000&q=80",
     "https://images.unsplash.com/photo-1587925358603-c2eea5305bbc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d3Jpc3R3YXRjaHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
     "https://c4.wallpaperflare.com/wallpaper/29/520/1004/breitling-swiss-luxury-watches-swiss-wrist-watches-luxury-analog-watch-breitling-hd-wallpaper-preview.jpg",
-  ];
+  ]; */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,10 +45,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             Stack(
               children: [
                 CarouselSlider.builder(
-                  itemCount: urlImages.length,
+                  itemCount: widget.productsModel?.productImages?.length ?? 0,
                   itemBuilder: (context, index, realIndex) {
-                    final urlImage = urlImages[index];
-                    return buildImage(urlImage, index);
+                    final imageList =
+                        widget.productsModel?.productImages![index];
+                    return buildImage(imageList?.image, index);
                   },
                   options: CarouselOptions(
                     height: MediaQuery.of(context).size.height * 0.5,
@@ -64,7 +70,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   child: CustomIconButton(
                     color: AppColors.inactiveColor,
                     iconData: Icons.arrow_back,
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
                   ),
                 ),
               ],
@@ -74,10 +82,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               child: Column(
                 children: [
                   // Title
-                  CustomText(
-                    text: 'Title' * 100,
-                    fontSize: AppFontSizes.subTitle16,
-                    fontWeight: FontWeight.bold,
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: CustomText(
+                      text: '${widget.productsModel?.title}',
+                      fontSize: AppFontSizes.subTitle16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   Row(
                     children: [
@@ -88,6 +99,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         iconSize: 24,
                         rateSize: 16,
                         bgColor: AppColors.white,
+                        rate: 4.3,
                       ),
                       // (85)
                       const CustomText(
@@ -245,9 +257,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           });
                         },
                         decrementTAP: () {
-                          setState(() {
-                            piece--;
-                          });
+                          if (piece != 0) {
+                            setState(() {
+                              piece--;
+                            });
+                          }
                         },
                       ),
                       // Add to card button
@@ -270,10 +284,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   AddSpace()
                       .vertical(MediaQuery.of(context).size.height * 0.05),
                   // Subtitle
-                  CustomText(
-                    text: 'Subtitle' * 100,
-                    fontSize: AppFontSizes.subTitle16,
-                    maxLines: 20,
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: CustomText(
+                      text: '${widget.productsModel?.description}',
+                      fontSize: AppFontSizes.subTitle16,
+                      maxLines: 20,
+                    ),
                   ),
                 ],
               ),
@@ -291,13 +308,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           activeDotColor: AppColors.primaryColor,
         ),
         activeIndex: activeIndex,
-        count: urlImages.length,
+        count: widget.productsModel?.productImages?.length ?? 0,
       );
 
   void animateToSlide(int index) => controller.animateToPage(index);
 }
 
-Widget buildImage(String urlImage, int index) {
+Widget buildImage(String? urlImage, int index) {
   return ImageContainerProduct(
     imageUrl: urlImage,
   );

@@ -3,7 +3,11 @@ import 'package:flutter_e_commerce_app/presentation/global%20components/custom_t
 import '../../../resources/style/colors.dart';
 
 class AboutUsContainer extends StatelessWidget {
-  const AboutUsContainer({super.key});
+  const AboutUsContainer({
+    super.key,
+    required this.text,
+  });
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +22,7 @@ class AboutUsContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: CustomText(
-        text: 'About us' * 150,
+        text: text,
         maxLines: 25,
       ),
     );

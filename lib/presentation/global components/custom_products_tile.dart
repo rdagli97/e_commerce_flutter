@@ -11,10 +11,18 @@ class CustomProductTile extends StatelessWidget {
     this.statusColor,
     this.statusText,
     this.onSelected,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.imageUrl,
   });
   final String? statusText;
   final Color? statusColor;
   final Function(String)? onSelected;
+  final String title;
+  final String description;
+  final double price;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +42,10 @@ class CustomProductTile extends StatelessWidget {
           // Container Image
           Container(
             width: MediaQuery.of(context).size.width * 0.25,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage(AppAssets.watch1Asset),
+                image: NetworkImage(imageUrl),
               ),
             ),
           ),
@@ -51,7 +59,7 @@ class CustomProductTile extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.36,
                   child: CustomText(
-                    text: 'Title' * 5,
+                    text: title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     fontWeight: FontWeight.bold,
@@ -62,7 +70,7 @@ class CustomProductTile extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.36,
                   child: CustomText(
-                    text: 'Subtitle' * 10,
+                    text: description,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     fontSize: 13,
@@ -70,6 +78,7 @@ class CustomProductTile extends StatelessWidget {
                 ),
                 AddSpace().vertical(12),
                 // Status
+                const Spacer(),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.36,
                   child: CustomText(
@@ -100,9 +109,9 @@ class CustomProductTile extends StatelessWidget {
                     ),
                     // make inactive
                     const PopupMenuItem(
-                      value: 'make inactive',
+                      value: 'set inactive',
                       child: CustomText(
-                        text: 'Make inactive',
+                        text: 'Set inactive',
                       ),
                     ),
                     // delete
@@ -121,8 +130,8 @@ class CustomProductTile extends StatelessWidget {
                 const CustomStarContainer(),
                 AddSpace().vertical(MediaQuery.of(context).size.height * 0.008),
                 // $ price
-                const CustomText(
-                  text: '\$ 129.99',
+                CustomText(
+                  text: '\$ $price',
                   fontWeight: FontWeight.bold,
                 ),
               ],
