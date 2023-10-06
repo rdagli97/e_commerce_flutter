@@ -10,6 +10,7 @@ import 'package:flutter_e_commerce_app/presentation/screens/my_comments/my_comme
 import 'package:flutter_e_commerce_app/presentation/screens/my_orders/my_orders_screen.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/my_products/my_products_screen.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/my_sales/my_sales_screen.dart';
+import 'package:flutter_e_commerce_app/presentation/screens/profile/sale_count_container.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/visit_company/visit_company_screen.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/visit_customer/visit_customer_screen.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
@@ -165,14 +166,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         text: '${userRead?.phone}',
                       ),
                       AddSpace().vertical(10),
-                      // Eye view
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: CustomIconButton(
-                          iconData: Icons.remove_red_eye,
-                          iconColor: AppColors.blue,
-                          onTap: _eyeViewClick,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          // Saled product count
+                          SaleCountContainer(
+                              text: '${userRead?.saledProductCount}'),
+                          // Eye view
+                          CustomIconButton(
+                            iconData: Icons.remove_red_eye,
+                            iconColor: AppColors.blue,
+                            onTap: _eyeViewClick,
+                          ),
+                        ],
                       ),
                       AddSpace().vertical(10),
                       // my products button

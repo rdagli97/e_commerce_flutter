@@ -14,6 +14,7 @@ class UserModel {
   String? aboutUs;
   String? token;
   String? gender;
+  int? saledProductCount;
   List<ProductsModel>? products;
   List<BuyedProductsModel>? buyedProducts;
   List<SaledProductsModel>? saledProducts;
@@ -34,6 +35,7 @@ class UserModel {
     this.favouriteProducts,
     this.token,
     this.gender,
+    this.saledProductCount,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -78,6 +80,7 @@ class UserModel {
       adress: json['user']['adress'],
       aboutUs: json['user']['aboutUs'],
       gender: json['user']['gender'],
+      saledProductCount: json['user']['saled_product_count'],
       token: json['token'],
       products: products,
       buyedProducts: buyedProducts,

@@ -12,7 +12,7 @@ class CustomStarContainer extends StatelessWidget {
     this.iconSize,
     this.rateSize,
     this.bgColor,
-    this.rate,
+    this.rate = 0.0,
   });
   final double? height;
   final double? width;

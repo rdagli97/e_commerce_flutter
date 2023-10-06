@@ -15,6 +15,7 @@ class ProductsModel {
   bool? selfFavourited;
   List<ProductImageModel>? productImages;
   List<CommentsModel>? comments;
+  double? oldPrice;
 
   ProductsModel({
     this.id,
@@ -30,6 +31,7 @@ class ProductsModel {
     this.comments,
     this.productImages,
     this.selfFavourited,
+    this.oldPrice,
   });
 
   ProductsModel.fromJson(Map<String, dynamic> json) {
@@ -52,15 +54,16 @@ class ProductsModel {
     userId = json['user_id'];
     title = json['title'];
     description = json['description'];
-    price = double.tryParse(json['price'].toString());
+    price = double.tryParse(json['price']?.toString() ?? '0.0') ?? 0.0;
     category = json['category'];
     rate = json['rate'];
-    discount = json['discount'];
+    discount = int.tryParse(json['discount']?.toString() ?? '0') ?? 0;
     online = json['online'];
     image = json['image'];
     selfFavourited =
         json['favourites'] != null && json['favourites'].length > 0;
     productImages = productImage;
     comments = comment;
+    oldPrice = double.tryParse(json['old_price']?.toString() ?? '0.0') ?? 0.0;
   }
 }

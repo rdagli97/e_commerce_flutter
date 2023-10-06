@@ -16,9 +16,16 @@ class ProductsVisitScreen extends StatefulWidget {
 
 class _ProductsVisitScreenState extends State<ProductsVisitScreen> {
   @override
+  void initState() {
+    Future.delayed(const Duration(seconds: 1), () {
+      build(context);
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final userRead = context.read<UserController>().user;
-    final userWatch = context.watch<UserController>().user;
     return Scaffold(
       appBar: AppBar(
         title: const CustomText(text: 'Products'),
@@ -32,7 +39,7 @@ class _ProductsVisitScreenState extends State<ProductsVisitScreen> {
               child: ListView.builder(
                 itemCount: userRead?.products?.length ?? 0,
                 itemBuilder: (context, index) {
-                  ProductsModel? product = userWatch?.products![index];
+                  ProductsModel? product = userRead?.products![index];
                   return VisitProductTile(
                     title: product?.title ?? 'title',
                     description: product?.description ?? 'description',

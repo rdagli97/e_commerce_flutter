@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_button.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
-import 'package:flutter_e_commerce_app/presentation/screens/bottom_nb/bottom_nb_screen.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/create_new_product/add_photo_screen.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/utils/navigate_skills.dart';
+
+import '../auth/loading_screen/loading_screen.dart';
 
 Future<dynamic> createNewProductDialog(BuildContext context) {
   return showDialog(
@@ -35,7 +36,7 @@ Future<dynamic> createNewProductDialog(BuildContext context) {
               onTap: () {
                 NavigateSkills().pushReplacementTo(
                   context,
-                  const BottomNBScreen(),
+                  const LoadingScreen(),
                 );
               },
               child: const CustomText(

@@ -13,6 +13,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../resources/style/colors.dart';
 import '../../../resources/utils/add_space.dart';
+import '../../../resources/utils/navigate_skills.dart';
+import '../auth/loading_screen/loading_screen.dart';
 
 class AddPhotoScreen extends StatefulWidget {
   const AddPhotoScreen({super.key});
@@ -122,6 +124,11 @@ class _AddPhotoScreenState extends State<AddPhotoScreen> {
                               image: image,
                             );
                       }
+                      if (!mounted) return;
+                      NavigateSkills().pushReplacementTo(
+                        context,
+                        const LoadingScreen(),
+                      );
                     },
                     child: const CustomText(
                       text: 'Publish with photos',

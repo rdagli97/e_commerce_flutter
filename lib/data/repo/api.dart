@@ -275,7 +275,7 @@ class API {
 
     try {
       final response = await http.delete(
-        Uri.parse('$baseUrl/$productId/delete'),
+        Uri.parse('$baseUrl/product/$productId/delete'),
         headers: {
           'Accept': applicationJson,
           'Authorization': 'Bearer $token',
@@ -309,6 +309,7 @@ class API {
   Future<ApiResponse> giveDiscount({
     required int productId,
     required int discountValue,
+    required double price,
   }) async {
     ApiResponse apiResponse = ApiResponse();
     String? token = await SharedPreference().getToken();
@@ -318,13 +319,60 @@ class API {
 
     try {
       final response = await http.put(
-        Uri.parse('$baseUrl/$productId/discount'),
+        Uri.parse('$baseUrl/product/$productId/discount'),
         headers: {
           'Accept': applicationJson,
           'Authorization': 'Bearer $token',
         },
         body: {
-          'discount': discountValue,
+          'discount': discountValue.toString(),
+          'price': price.toString(),
+        },
+      );
+
+      final dynamic body = convert.jsonDecode(response.body);
+      switch (response.statusCode) {
+        case 200:
+          apiResponse.data = body['message'];
+          break;
+        case 404:
+          apiResponse.error = body['message'];
+          break;
+        case 403:
+          apiResponse.error = body['message'];
+          break;
+        case 401:
+          apiResponse.error = unauthorized;
+          break;
+        default:
+          apiResponse.error = somethingWentWrong;
+          break;
+      }
+    } catch (e) {
+      apiResponse.error = serverError;
+    }
+    return apiResponse;
+  }
+
+  Future<ApiResponse> changePrice({
+    required int productId,
+    required double price,
+  }) async {
+    ApiResponse apiResponse = ApiResponse();
+    String? token = await SharedPreference().getToken();
+    if (token == '' || token.isEmpty) {
+      developer.log(nullToken);
+    }
+
+    try {
+      final response = await http.put(
+        Uri.parse('$baseUrl/product/$productId/change/price'),
+        headers: {
+          'Accept': applicationJson,
+          'Authorization': 'Bearer $token',
+        },
+        body: {
+          'price': price.toString(),
         },
       );
 

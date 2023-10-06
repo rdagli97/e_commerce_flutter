@@ -16,6 +16,7 @@ class CreateNewProductScreen extends StatefulWidget {
 }
 
 class _CreateNewProductScreenState extends State<CreateNewProductScreen> {
+  String category = '';
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
@@ -27,7 +28,7 @@ class _CreateNewProductScreenState extends State<CreateNewProductScreen> {
           title: _titleController.text,
           description: _descriptionController.text,
           price: double.parse(_priceController.text),
-          category: "Man",
+          category: category,
         );
   }
 
@@ -63,6 +64,133 @@ class _CreateNewProductScreenState extends State<CreateNewProductScreen> {
                 controller: _descriptionController,
                 hintText: 'Description',
                 maxLines: 5,
+              ),
+              AddSpace().vertical(MediaQuery.of(context).size.height * 0.03),
+              Row(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: PopupMenuButton(
+                      shape: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 5),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              width: 1, color: AppColors.primaryColor),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Row(
+                          children: [
+                            CustomText(
+                              text: 'Select category',
+                            ),
+                            Icon(Icons.arrow_drop_down_rounded)
+                          ],
+                        ),
+                      ),
+                      itemBuilder: (context) => [
+                        const PopupMenuItem(
+                          value: 'man',
+                          child: CustomText(
+                            text: 'Man',
+                          ),
+                        ),
+                        const PopupMenuItem(
+                          value: 'woman',
+                          child: CustomText(
+                            text: 'Woman',
+                          ),
+                        ),
+                        const PopupMenuItem(
+                          value: 'shoes',
+                          child: CustomText(
+                            text: 'Shoes',
+                          ),
+                        ),
+                        const PopupMenuItem(
+                          value: 'computers',
+                          child: CustomText(
+                            text: 'Computers',
+                          ),
+                        ),
+                        const PopupMenuItem(
+                          value: 'phones',
+                          child: CustomText(
+                            text: 'Phones',
+                          ),
+                        ),
+                        const PopupMenuItem(
+                          value: 'watches',
+                          child: CustomText(
+                            text: 'Watches',
+                          ),
+                        ),
+                      ],
+                      onSelected: (value) {
+                        switch (value) {
+                          case 'man':
+                            setState(() {
+                              category = 'Man';
+                            });
+                            break;
+                          case 'woman':
+                            setState(() {
+                              category = 'Woman';
+                            });
+                            break;
+                          case 'shoes':
+                            setState(() {
+                              category = 'Shoes';
+                            });
+                            break;
+                          case 'computers':
+                            setState(() {
+                              category = 'Computers';
+                            });
+                            break;
+                          case 'phones':
+                            setState(() {
+                              category = 'Phones';
+                            });
+                            break;
+                          case 'watches':
+                            setState(() {
+                              category = 'Watches';
+                            });
+                            break;
+                          default:
+                            category = '';
+                            break;
+                        }
+                      },
+                    ),
+                  ),
+                  AddSpace().horizontal(5),
+                  Row(
+                    children: [
+                      const CustomText(text: 'Category :'),
+                      AddSpace().horizontal(3),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 3),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 1,
+                            color: AppColors.primaryColor,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: CustomText(
+                          text: category,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
               AddSpace().vertical(MediaQuery.of(context).size.height * 0.03),
               // Price textfield

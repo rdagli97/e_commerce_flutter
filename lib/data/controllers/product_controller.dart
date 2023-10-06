@@ -7,6 +7,7 @@ import 'package:flutter_e_commerce_app/data/models/buyed_products.dart';
 import 'package:flutter_e_commerce_app/data/models/product_model.dart';
 import 'package:flutter_e_commerce_app/data/models/saled_products.dart';
 import 'package:flutter_e_commerce_app/data/repo/api.dart';
+import 'package:flutter_e_commerce_app/presentation/screens/auth/loading_screen/loading_screen.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/auth_intro/intro_screen/intro_screen.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/bottom_nb/bottom_nb_screen.dart';
 import 'package:flutter_e_commerce_app/resources/consts/service_strings.dart';
@@ -55,10 +56,6 @@ class ProductController extends ChangeNotifier {
     );
     if (!mounted) return;
     if (response.error == null) {
-      NavigateSkills().pushReplacementTo(
-        context,
-        const BottomNBScreen(),
-      );
       HandleError().showErrorMessage(context, 'Product created!');
     } else if (response.error == unauthorized) {
       logoutAndPushIntro(context);
@@ -97,20 +94,55 @@ class ProductController extends ChangeNotifier {
     required bool mounted,
     required int productId,
     required int discountValue,
+    required double price,
   }) async {
     _isLoading = true;
     ApiResponse response = await _apiService.giveDiscount(
       productId: productId,
       discountValue: discountValue,
+      price: price,
     );
     if (!mounted) return;
     if (response.error == null) {
       HandleError().showErrorMessage(context, '${response.data}');
+      NavigateSkills().pushReplacementTo(
+        context,
+        const LoadingScreen(),
+      );
     } else if (response.error == unauthorized) {
       logoutAndPushIntro(context);
     } else {
       HandleError().showErrorMessage(context, '${response.error}');
     }
+    _isLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> changePrice({
+    required BuildContext context,
+    required bool mounted,
+    required int productId,
+    required double price,
+  }) async {
+    _isLoading = true;
+    ApiResponse response = await _apiService.changePrice(
+      productId: productId,
+      price: price,
+    );
+    if (!mounted) return;
+    if (response.error == null) {
+      HandleError().showErrorMessage(context, '${response.data}');
+      NavigateSkills().pushReplacementTo(
+        context,
+        const LoadingScreen(),
+      );
+    } else if (response.error == unauthorized) {
+      logoutAndPushIntro(context);
+    } else {
+      HandleError().showErrorMessage(context, '${response.error}');
+    }
+    _isLoading = false;
+    notifyListeners();
   }
 
   Future<void> getProducts({

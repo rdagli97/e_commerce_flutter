@@ -5,6 +5,7 @@ import 'package:flutter_e_commerce_app/presentation/global%20components/custom_b
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_icon_button.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_star_container.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
+import 'package:flutter_e_commerce_app/presentation/screens/product_detail/detail_image_container.dart';
 import 'package:flutter_e_commerce_app/resources/style/colors.dart';
 import 'package:flutter_e_commerce_app/resources/style/font_sizes.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
@@ -28,13 +29,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   int piece = 0;
   int activeIndex = 0;
   final CarouselController controller = CarouselController();
-  /*final List<String> urlImages = [
-    "https://i.pinimg.com/1200x/a5/af/29/a5af297cc589e13706929afb0015aabd.jpg",
-    "https://i.pinimg.com/originals/db/12/fe/db12fea16a6836ac1a7580921983fa06.jpg",
-    "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8d2F0Y2h8ZW58MHx8MHx8fDA%3D&w=1000&q=80",
-    "https://images.unsplash.com/photo-1587925358603-c2eea5305bbc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d3Jpc3R3YXRjaHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-    "https://c4.wallpaperflare.com/wallpaper/29/520/1004/breitling-swiss-luxury-watches-swiss-wrist-watches-luxury-analog-watch-breitling-hd-wallpaper-preview.jpg",
-  ]; */
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,21 +39,26 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             // Image Slider
             Stack(
               children: [
-                CarouselSlider.builder(
-                  itemCount: widget.productsModel?.productImages?.length ?? 0,
-                  itemBuilder: (context, index, realIndex) {
-                    final imageList =
-                        widget.productsModel?.productImages![index];
-                    return buildImage(imageList?.image, index);
-                  },
-                  options: CarouselOptions(
-                    height: MediaQuery.of(context).size.height * 0.5,
-                    enableInfiniteScroll: false,
-                    enlargeCenterPage: true,
-                    onPageChanged: (index, reason) =>
-                        setState(() => activeIndex = index),
-                  ),
-                ),
+                widget.productsModel?.image !=
+                        'https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.jpg'
+                    ? CarouselSlider.builder(
+                        itemCount:
+                            widget.productsModel?.productImages?.length ?? 0,
+                        itemBuilder: (context, index, realIndex) {
+                          final imageList =
+                              widget.productsModel?.productImages![index];
+                          return buildImage(imageList?.image, index);
+                        },
+                        options: CarouselOptions(
+                          height: MediaQuery.of(context).size.height * 0.5,
+                          enableInfiniteScroll: false,
+                          enlargeCenterPage: true,
+                          onPageChanged: (index, reason) =>
+                              setState(() => activeIndex = index),
+                        ),
+                      )
+                    : DetailImageContainer(
+                        imageUrl: widget.productsModel?.image ?? ''),
                 Positioned(
                   bottom: 10,
                   left: 140,
@@ -99,11 +99,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         iconSize: 24,
                         rateSize: 16,
                         bgColor: AppColors.white,
-                        rate: 4.3,
+                        rate: 4.9,
                       ),
-                      // (85)
-                      const CustomText(
-                        text: '(85)',
+                      // Comment length
+                      CustomText(
+                        text: '${widget.productsModel?.comments?.length}',
                         color: AppColors.grey,
                         fontSize: AppFontSizes.shopTitle12,
                       ),
