@@ -125,6 +125,8 @@ class _AddPhotoScreenState extends State<AddPhotoScreen> {
                             );
                       }
                       if (!mounted) return;
+                      context.read<ProductController>().resetPhotoList();
+                      if (!mounted) return;
                       NavigateSkills().pushReplacementTo(
                         context,
                         const LoadingScreen(),

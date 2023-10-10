@@ -8,7 +8,7 @@ class ProductsModel {
   String? description;
   double? price;
   String? category;
-  int? rate;
+  double? rate;
   int? discount;
   int? online;
   String? image;
@@ -56,7 +56,7 @@ class ProductsModel {
     description = json['description'];
     price = double.tryParse(json['price']?.toString() ?? '0.0') ?? 0.0;
     category = json['category'];
-    rate = json['rate'];
+    rate = double.tryParse(json['rate']?.toString() ?? '0.0') ?? 0.0;
     discount = int.tryParse(json['discount']?.toString() ?? '0') ?? 0;
     online = json['online'];
     image = json['image'];

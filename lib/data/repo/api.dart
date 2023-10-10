@@ -153,7 +153,7 @@ class API {
 
     try {
       final response = await http.put(
-        Uri.parse('$baseUrl/update'),
+        Uri.parse('$baseUrl/user/update'),
         headers: {
           'Accept': applicationJson,
           'Authorization': 'Bearer $token',
@@ -429,6 +429,77 @@ class API {
         default:
           apiResponse.error = somethingWentWrong;
           break;
+      }
+    } catch (e) {
+      apiResponse.error = serverError;
+    }
+    return apiResponse;
+  }
+
+  //get hotest products
+  Future<ApiResponse> getHotestProducts() async {
+    ApiResponse apiResponse = ApiResponse();
+    String? token = await SharedPreference().getToken();
+    if (token == '' || token.isEmpty) {
+      developer.log(nullToken);
+    }
+
+    try {
+      final response =
+          await http.get(Uri.parse('$baseUrl/products/hotest'), headers: {
+        'Accept': applicationJson,
+        'Authorization': 'Bearer $token',
+      });
+
+      final dynamic body = convert.jsonDecode(response.body);
+      switch (response.statusCode) {
+        case 200:
+          List<dynamic> productList = List.from(body['products']);
+          apiResponse.data =
+              productList.map((e) => ProductsModel.fromJson(e)).toList();
+          break;
+        case 401:
+          apiResponse.error = unauthorized;
+          break;
+        default:
+          apiResponse.error = somethingWentWrong;
+          break;
+      }
+    } catch (e) {
+      apiResponse.error = serverError;
+    }
+    return apiResponse;
+  }
+
+  // get discounted products
+  Future<ApiResponse> getDiscountedProducts() async {
+    ApiResponse apiResponse = ApiResponse();
+    String? token = await SharedPreference().getToken();
+    if (token == '' || token.isEmpty) {
+      developer.log(nullToken);
+    }
+
+    try {
+      final response = await http.get(
+        Uri.parse('$baseUrl/discounted/products'),
+        headers: {
+          'Accept': applicationJson,
+          'Authorization': 'Bearer $token',
+        },
+      );
+
+      final dynamic body = convert.jsonDecode(response.body);
+      switch (response.statusCode) {
+        case 200:
+          List<dynamic> productList = List.from(body['products']);
+          apiResponse.data =
+              productList.map((e) => ProductsModel.fromJson(e)).toList();
+          break;
+        case 401:
+          apiResponse.error = unauthorized;
+          break;
+        default:
+          apiResponse.error = somethingWentWrong;
       }
     } catch (e) {
       apiResponse.error = serverError;

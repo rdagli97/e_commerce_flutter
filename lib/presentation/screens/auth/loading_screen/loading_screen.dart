@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce_app/data/controllers/product_controller.dart';
 import 'package:flutter_e_commerce_app/data/controllers/user_controller.dart';
 import 'package:flutter_e_commerce_app/data/models/api_response.dart';
 import 'package:flutter_e_commerce_app/data/repo/api.dart';
@@ -27,9 +28,18 @@ class _LoadingScreenState extends State<LoadingScreen> {
       ApiResponse response = await API().getCurrentUserDetails();
       if (!mounted) return;
       if (response.error == null) {
+        final ProductController productController =
+            context.read<ProductController>();
         await context
             .read<UserController>()
             .getCurrentUserDetails(context: context, mounted: mounted);
+        if (!mounted) return;
+        productController.getProducts(context: context, mounted: mounted);
+        if (!mounted) return;
+        productController.getHotestProducts(context: context, mounted: mounted);
+        if (!mounted) return;
+        productController.getDiscountedProducts(
+            context: context, mounted: mounted);
         goToHomeScreen();
       } else if (response.error == unauthorized) {
         goToIntroScreen();

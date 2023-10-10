@@ -28,7 +28,7 @@ class CustomStarContainer extends StatelessWidget {
       width: width ?? MediaQuery.of(context).size.width * 0.11,
       padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 5),
       decoration: BoxDecoration(
-        color: bgColor ?? AppColors.bgColor,
+        color: bgColor?.withOpacity(1) ?? AppColors.bgColor.withOpacity(0.3),
         borderRadius: BorderRadius.circular(5),
       ),
       child: Row(

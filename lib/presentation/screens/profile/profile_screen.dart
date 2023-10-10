@@ -4,7 +4,6 @@ import 'package:flutter_e_commerce_app/presentation/global%20components/custom_b
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_icon_button.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_star_container.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
-import 'package:flutter_e_commerce_app/presentation/screens/edit_about_us/edit_about_us_screen.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/edit_company_profile/edit_company_profile_screen.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/my_comments/my_comments_screen.dart';
 import 'package:flutter_e_commerce_app/presentation/screens/my_orders/my_orders_screen.dart';
@@ -180,7 +179,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ],
                       ),
-                      AddSpace().vertical(10),
+                      AddSpace()
+                          .vertical(MediaQuery.of(context).size.height * 0.05),
                       // my products button
                       CustomButton(
                         onTap: () {
@@ -219,20 +219,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         },
                         child: const CustomText(
                           text: 'Edit profile',
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      AddSpace().vertical(20),
-                      // Edit about us button
-                      CustomButton(
-                        onTap: () {
-                          NavigateSkills().pushTo(
-                            context,
-                            const EditAboutUsScreen(),
-                          );
-                        },
-                        child: const CustomText(
-                          text: 'Edit about us',
                           fontWeight: FontWeight.bold,
                         ),
                       ),

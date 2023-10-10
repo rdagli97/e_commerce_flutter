@@ -138,6 +138,11 @@ class UserController extends ChangeNotifier {
     if (response.error == null) {
       _user = response.data as UserModel;
       HandleError().showErrorMessage(context, 'User updated');
+      getCurrentUserDetails(context: context, mounted: mounted);
+      NavigateSkills().pushReplacementTo(
+        context,
+        const LoadingScreen(),
+      );
     } else if (response.error == unauthorized) {
       logoutAndGoIntroScreen(context);
     } else {

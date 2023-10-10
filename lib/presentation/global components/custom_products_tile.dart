@@ -60,7 +60,7 @@ class CustomProductTile extends StatelessWidget {
                 children: [
                   // Title
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.36,
+                    width: MediaQuery.of(context).size.width * 0.35,
                     child: CustomText(
                       text: title,
                       maxLines: 1,
@@ -71,7 +71,7 @@ class CustomProductTile extends StatelessWidget {
                   AddSpace().vertical(5),
                   // Subtitle
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.36,
+                    width: MediaQuery.of(context).size.width * 0.35,
                     child: CustomText(
                       text: description,
                       maxLines: 3,
@@ -83,7 +83,7 @@ class CustomProductTile extends StatelessWidget {
                   // Status
                   const Spacer(),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.36,
+                    width: MediaQuery.of(context).size.width * 0.35,
                     child: CustomText(
                       text: statusText ?? '• Online',
                       color: statusColor ?? AppColors.primaryColor,
@@ -142,9 +142,13 @@ class CustomProductTile extends StatelessWidget {
                   AddSpace()
                       .vertical(MediaQuery.of(context).size.height * 0.008),
                   // $ price
-                  CustomText(
-                    text: '\$ $price',
-                    fontWeight: FontWeight.bold,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.18,
+                    child: CustomText(
+                      text: '\$ $price',
+                      fontWeight: FontWeight.bold,
+                      maxLines: 1,
+                    ),
                   ),
                 ],
               ),

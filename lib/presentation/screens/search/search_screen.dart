@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_category_container.dart';
-import 'package:flutter_e_commerce_app/presentation/global%20components/custom_list_tile.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_textformfield.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/unfocus_widget.dart';
 import 'package:flutter_e_commerce_app/resources/utils/add_space.dart';
@@ -95,17 +94,7 @@ class SearchScreen extends StatelessWidget {
                 child: GridView.count(
                   crossAxisCount: 3,
                   childAspectRatio: 1 / 1.7,
-                  children: const [
-                    CustomListTile(),
-                    CustomListTile(),
-                    CustomListTile(),
-                    CustomListTile(),
-                    CustomListTile(),
-                    CustomListTile(),
-                    CustomListTile(),
-                    CustomListTile(),
-                    CustomListTile(),
-                  ],
+                  children: const [],
                 ),
               ),
             ],

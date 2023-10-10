@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/presentation/global%20components/custom_text.dart';
 
-import '../../global components/custom_list_tile.dart';
-
 class FavoritesScreen extends StatelessWidget {
   const FavoritesScreen({super.key});
 
@@ -21,17 +19,7 @@ class FavoritesScreen extends StatelessWidget {
               child: GridView.count(
                 crossAxisCount: 3,
                 childAspectRatio: 1 / 1.5,
-                children: const [
-                  CustomListTile(),
-                  CustomListTile(),
-                  CustomListTile(),
-                  CustomListTile(),
-                  CustomListTile(),
-                  CustomListTile(),
-                  CustomListTile(),
-                  CustomListTile(),
-                  CustomListTile(),
-                ],
+                children: const [],
               ),
             ),
           ],

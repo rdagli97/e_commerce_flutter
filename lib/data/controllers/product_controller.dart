@@ -24,6 +24,12 @@ class ProductController extends ChangeNotifier {
   List<ProductsModel> _productList = [];
   List<ProductsModel> get productList => _productList;
 
+  List<ProductsModel> _hotestProducts = [];
+  List<ProductsModel> get hotestProducts => _hotestProducts;
+
+  List<ProductsModel> _discountedProducts = [];
+  List<ProductsModel> get discountedProducts => _discountedProducts;
+
   final List<BuyedProductsModel> _buyedProductList = [];
   List<BuyedProductsModel> get buyedProductList => _buyedProductList;
 
@@ -163,6 +169,42 @@ class ProductController extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> getHotestProducts({
+    required BuildContext context,
+    required bool mounted,
+  }) async {
+    _isLoading = true;
+    ApiResponse response = await _apiService.getHotestProducts();
+    if (!mounted) return;
+    if (response.error == null) {
+      _hotestProducts = response.data as List<ProductsModel>;
+    } else if (response.error == unauthorized) {
+      logoutAndPushIntro(context);
+    } else {
+      HandleError().showErrorMessage(context, '${response.error}');
+    }
+    _isLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> getDiscountedProducts({
+    required BuildContext context,
+    required bool mounted,
+  }) async {
+    _isLoading = true;
+    ApiResponse response = await _apiService.getDiscountedProducts();
+    if (!mounted) return;
+    if (response.error == null) {
+      _discountedProducts = response.data as List<ProductsModel>;
+    } else if (response.error == unauthorized) {
+      logoutAndPushIntro(context);
+    } else {
+      HandleError().showErrorMessage(context, '${response.error}');
+    }
+    _isLoading = false;
+    notifyListeners();
+  }
+
   Future<void> buyProduct({
     required BuildContext context,
     required bool mounted,
@@ -218,6 +260,11 @@ class ProductController extends ChangeNotifier {
 
   void addPhotoToList(File? imageUrl) {
     productImages.add(imageUrl);
+    notifyListeners();
+  }
+
+  void resetPhotoList() {
+    productImages.clear();
     notifyListeners();
   }
 

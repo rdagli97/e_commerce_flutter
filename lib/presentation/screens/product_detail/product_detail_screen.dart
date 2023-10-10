@@ -61,8 +61,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         imageUrl: widget.productsModel?.image ?? ''),
                 Positioned(
                   bottom: 10,
-                  left: 140,
-                  child: buildIndicator(),
+                  left: MediaQuery.of(context).size.width * 0.4,
+                  child: widget.productsModel?.productImages?.length != 1
+                      ? buildIndicator()
+                      : const SizedBox(),
                 ),
                 Positioned(
                   left: 30,

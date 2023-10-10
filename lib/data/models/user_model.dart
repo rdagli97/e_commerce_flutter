@@ -78,7 +78,7 @@ class UserModel {
       image: json['user']['image'],
       role: json['user']['role'],
       adress: json['user']['adress'],
-      aboutUs: json['user']['aboutUs'],
+      aboutUs: json['user']['about_us'],
       gender: json['user']['gender'],
       saledProductCount: json['user']['saled_product_count'],
       token: json['token'],
